@@ -49,6 +49,7 @@ group :test do
   gem 'poltergeist'
   gem 'launchy'
   gem 'rack_session_access'
+  gem 'rails-controller-testing'
 end
 
 group :development do
