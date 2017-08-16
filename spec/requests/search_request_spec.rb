@@ -16,11 +16,5 @@ RSpec.describe "SearchRequest", :type => :request do
       expect(Search.count).to eq 1
       expect(Search.first.routes.count).to be > 0
     end
-    # it "redirects to the show page" do
-    #   binding.pry
-    #   expect(response).to redirect_to(assigns(:search))
-    #   follow_redirect!
-    #   expect(response).to render_template(:show)
-    # end
   end
 end

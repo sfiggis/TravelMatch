@@ -22,16 +22,13 @@ class Search extends React.Component {
   }
 
   request() {
-    console.log(this)
     let data = JSON.stringify({search: {origin: this.state.origin, departureDate: this.state.departureDate, returnDate: this.state.returnDate, travellerId: this.state.currentTraveller.id }})
-    console.log(data);
     $.ajax({
       url: "/searches",
       type: 'POST',
       contentType: 'application/json',
       data: data,
       success: function(data, status, xhr) {
-        console.log('SHOW HERE ON RESPONSE');
       }
     })
   }

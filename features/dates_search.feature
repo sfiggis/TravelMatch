@@ -1,6 +1,4 @@
 Feature: Dates Search
-@wip
-@javascript
   Scenario: A traveller searches for holidays by dates
     Given they are registered
       And they are logged in
