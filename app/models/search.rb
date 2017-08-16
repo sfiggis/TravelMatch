@@ -10,7 +10,7 @@ class Search < ApplicationRecord
   end
 
   def self.api_key
-    "de802dc5fcdd7bdd866adf7001fc06df"
+    @api_key
   end
 
   def results
@@ -20,7 +20,7 @@ class Search < ApplicationRecord
       return_date: self.return_date,
       token: Search.api_key,
       format: :json,
-      limit: 10
+      limit: 100
       })
     
     body = JSON.parse(results.body)
