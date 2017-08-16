@@ -1,15 +1,13 @@
 require 'pry'
 class SearchesController < ApplicationController
   def show
-    binding.pry
     @search = Search.find(params[:id])
-    render json: @search
+    # render json: @search
   end
   def create
     @search = Search.new(search_params)
     response = @search.results
     @search.save
-    binding.pry
     redirect_to search_path(@search)
   end
 
