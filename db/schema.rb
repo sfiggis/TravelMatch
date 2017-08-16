@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815133954) do
+ActiveRecord::Schema.define(version: 20170816161916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.string "iso2"
+    t.string "iso3"
+    t.string "itu"
+    t.string "fips"
+    t.string "currency_code"
+    t.string "currency"
+    t.string "capital"
+    t.string "continent"
+  end
 
   create_table "routes", force: :cascade do |t|
     t.string "destination_code"
@@ -36,9 +48,18 @@ ActiveRecord::Schema.define(version: 20170815133954) do
     t.index ["traveller_id"], name: "index_searches_on_traveller_id"
   end
 
+  create_table "traveller_countries", force: :cascade do |t|
+    t.bigint "traveller_id"
+    t.bigint "country_id"
+    t.boolean "home"
+    t.index ["country_id"], name: "index_traveller_countries_on_country_id"
+    t.index ["traveller_id"], name: "index_traveller_countries_on_traveller_id"
+  end
+
   create_table "travellers", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
+    t.string "currency"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "username", default: "", null: false
