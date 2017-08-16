@@ -6,5 +6,8 @@ class Traveller < ApplicationRecord
   validates :username, uniqueness: true
 
   has_many :searches
+  has_many :traveller_countries
+  has_many :countries, through: :traveller_countries
+  accepts_nested_attributes_for :countries
 
 end

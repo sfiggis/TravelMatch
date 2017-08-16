@@ -1,0 +1,13 @@
+<h1> Edit your profile</h1>
+
+<%= form_for(@traveller, url: traveller_path(@traveller), action: "put") do |f| %>
+  <%= fields_for :country do |builder| %>
+  <fieldset>
+    <%= builder.label :currency %>
+    <%= builder.collection_select(:country_ids, Country.all, :id, :currency) %> 
+  </fieldset>
+<% end %>
+<fieldset>
+  <%= f.submit "Update" %>
+</fieldset>
+<% end %>
