@@ -10,6 +10,7 @@ class CreateCountry < ActiveRecord::Migration[5.1]
       t.string :currency
       t.string :capital
       t.string :continent
+      t.float :gdp_ppp
     end
   end
 end

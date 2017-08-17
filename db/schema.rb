@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20170816161916) do
     t.string "currency"
     t.string "capital"
     t.string "continent"
+    t.float "gdp_ppp"
   end
 
   create_table "routes", force: :cascade do |t|
