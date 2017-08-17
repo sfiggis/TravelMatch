@@ -5,15 +5,17 @@ class SearchesController < ApplicationController
     # render json: @search
   end
   def create
+    binding.pry
     @search = Search.new(search_params)
     response = @search.results
     @search.save
-    redirect_to search_path(@search)
+    # redirect_to search_path(@search)
+    render "show"
   end
 
   private
   def search_params
-    params.require(:search).permit(:departureDate, :returnDate, :travellerId, :origin).transform_keys { |k| k.underscore }
+    params.require(:search).permit(:departureDate, :returnDate, :travellerId, :origin, :budget).transform_keys { |k| k.underscore }
   end
 
   def find_search
