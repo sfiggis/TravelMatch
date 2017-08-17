@@ -7,6 +7,7 @@ class ShowSearch extends Search {
   };
 
   render() {
+    console.log(this)
     if (this.props.search !== undefined) {
       return (
         <div id="show-search">
