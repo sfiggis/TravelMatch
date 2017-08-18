@@ -5,11 +5,15 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 gem 'webmock'
 gem 'httparty'
 gem 'jquery-rails'
 gem "react-rails"
 gem 'devise'
+gem 'popper_js', '~> 1.11.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'
 # Use postgresql as the database for Active Record

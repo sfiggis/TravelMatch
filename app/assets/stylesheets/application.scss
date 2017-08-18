@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+@import "_main.scss";
+@import "_form.scss";
+@import "_nav_bar.scss";
+@import "bootstrap";

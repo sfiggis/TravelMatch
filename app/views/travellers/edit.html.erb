@@ -4,7 +4,7 @@
   <%= fields_for :country do |builder| %>
   <fieldset>
     <%= builder.label :currency_name %>
-    <%= builder.collection_select(:country_ids, Country.all, :id, :currency_name) %> 
+    <%= builder.collection_select(:country_ids, Country.select('DISTINCT currency_name').order(:currency_name), :id, :currency_name) %> 
   </fieldset>
 <% end %>
 <fieldset>
