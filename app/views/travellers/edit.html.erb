@@ -3,8 +3,8 @@
 <%= form_for(@traveller, url: traveller_path(@traveller), action: "put") do |f| %>
   <%= fields_for :country do |builder| %>
   <fieldset>
-    <%= builder.label :currency %>
-    <%= builder.collection_select(:country_ids, Country.all, :id, :currency) %> 
+    <%= builder.label :currency_name %>
+    <%= builder.collection_select(:country_ids, Country.all, :id, :currency_name) %> 
   </fieldset>
 <% end %>
 <fieldset>
