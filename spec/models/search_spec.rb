@@ -23,4 +23,24 @@ RSpec.describe Search, type: :model do
       expect(@result.first.flight_number).to eq 225
     end
   end
+
+  describe "travel routes by budget" do
+    before do
+      @search = Search.new(origin: "MOW", departure_date: Date.new(2017,11, 01), return_date: Date.new(2017,11, 03), budget: 1000)
+    end
+    it "gets a journey length from the search dates" do
+      expect(@search.journey_length).to eq 2
+    end
+
+    it "gets a daily budget from the journey length and budget amount" do
+      expect(@search.daily_budget).to eq 500
+    end
+
+    # it "finds airports that match the budget criteria" do
+    #   expect(@search.airports.count).to be > 0
+    # end
+
+    # it "loads flights for top destinations" do
+    # end
+  end
 end
