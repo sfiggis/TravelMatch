@@ -4,7 +4,7 @@ class Search extends React.Component {
     super(props);
     this.state = {
       currentTraveller: this.props.traveller,
-      currentSearch: {},
+      currentSearch: this.props.search,
       origin: '',
       departureDate: '',
       returnDate: '',
@@ -25,19 +25,24 @@ class Search extends React.Component {
 
   request() {
     let data = JSON.stringify({traveller: this.props.traveller, search: {origin: this.state.origin, departureDate: this.state.departureDate, returnDate: this.state.returnDate, travellerId: this.state.currentTraveller.id }})
+    var view = this
     $.ajax({
-      url: "/searches",
-      type: 'POST',
+      url: "/searches/" + this.state.currentSearch.id,
+      type: 'PUT',
       contentType: 'application/json',
       data: data,
       success: function(data, status, xhr) {
-      }
-    })
-  }
+        view.setState({
+          currentSearch: this.data["search"]
+          });
+        view.show();
+    }
+  })
+  };
 
   show() {
     this.setState({
-      view: <ShowSearch traveller={ this.props.traveller } parent={ this } />
+      view: <ShowSearch traveller={ this.props.traveller } parent={ this } search={ this.props.search } />
     })
   }
 
@@ -60,29 +65,30 @@ var CreateSearch = React.createClass( {
   },
 
   render() {
-    // can't access parent state for slider
-    console.log(this.props.parent.state.value)
     return (
-      <form id="search">
-        <h1>Search</h1>
-        <fieldset>
-          <input type="text" id="origin" defaultValue="Origin" onChange={ (e) => this.props.parent.setState({ origin: e.target.value }) }/>
-        </fieldset>
-        <fieldset>
-          <input type="date" id="departureDate" defaultValue="Departure Date" onChange={ (e) => this.props.parent.setState({ departureDate: e.target.value }) }/>
-        </fieldset>
-        <fieldset>
-          <input type="date" id="returnDate" defaultValue="Return Date" onChange={ (e) => this.props.parent.setState({ returnDate: e.target.value }) }/>
-        </fieldset>
-        <fieldset>
-        Budget:
-          <input type="range" id="budget" name="budget" min="300" max="10000" onChange={ this.updateTextInput }/>
-          <input type="text" id="textInput" value={ this.state.value }/>
-        </fieldset>
-        <fieldset>
-          <button onClick={ this.props.parent.handleClick } id="searchButton" value="Search">Submit</button>
-        </fieldset> 
-      </form>
+      <div className="form">
+        <form id="search">
+          <fieldset id="origin-wrapper">
+            <input type="text" id="origin" placeholder="Origin" onChange={ (e) => this.props.parent.setState({ origin: e.target.value }) }/>
+          </fieldset>
+          <fieldset id="departure-wrapper">
+            <input type="date" id="departureDate" placeholder="Departure Date" onChange={ (e) => this.props.parent.setState({ departureDate: e.target.value }) }/>
+          </fieldset>
+          <fieldset id="return-wrapper">
+            <input type="date" id="returnDate" placeholder="Return Date" onChange={ (e) => this.props.parent.setState({ returnDate: e.target.value }) }/>
+          </fieldset>
+          <fieldset id="budget-wrapper">
+            <input type="range" id="budget" name="budget" min="300" max="10000" onChange={ this.updateTextInput }/>
+            <h4 className="slider">£{ this.state.value }</h4>
+          </fieldset>
+          <fieldset>
+            <button className="button" onClick={ this.props.parent.handleClick } id="matchButton" value="Match">Match</button>
+          </fieldset>  
+          <fieldset>
+            <button className="button" onClick={ this.props.parent.handleClick } id="searchButton" value="Quick Search">Quick Search</button>
+          </fieldset>
+        </form>
+      </div>
     ) 
   }
 });

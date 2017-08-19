@@ -1,17 +1,27 @@
 require 'pry'
 class SearchesController < ApplicationController
+  skip_before_action :verify_authenticity_token, :only => :update
+  before_action :find_search, only: [:update]
+  respond_to :json
   def show
     @search = Search.find(params[:id])
-    # render json: @search
+    respond_to do |format|
+      format.json  { render :json => @search.to_json(:include => [:airports], methods: :flight_results)}
+    end
   end
+
   def create
-    Country.current_traveller = find_traveller
-    @search = Search.new(search_params)
-    destinations = @search.destination_results(search_params[:budget])
+
+  end
+
+  def update
+    filtering_params(search_params).each do |key, value|
+      @search.destination_results(value) if value.present?
+    end
+    @search.update(search_params)
     response = @search.flight_results
     @search.save
-    # redirect_to search_path(@search)
-    render "show"
+    render json: @search
   end
 
   private
@@ -23,7 +33,7 @@ class SearchesController < ApplicationController
     @search = Search.find(params[:id])
   end
 
-  def find_traveller
-    Traveller.find(params[:search][:travellerId])
+    def filtering_params(params)
+    sliced_params = params.slice(:budget, :origin, :departureDate, :returnDate)
   end
 end
