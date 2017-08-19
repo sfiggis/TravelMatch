@@ -7,13 +7,13 @@ RSpec.describe Search, type: :model do
   end
 
   describe "travel routes by date" do
+    let!(:traveller) { create(:traveller) }
     before do
       stub_request(:get, "http://api.travelpayouts.com/v1/prices/cheap?departure_date=2017-11-01&format=json&origin=MOW&return_date=2017-12-01&token=12345&limit=100").
          with(headers: {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
          to_return(status: 200, body: File.read("spec/travel_payouts/cheapest_flights.json"), headers: {})
-
-      @search = Search.new(origin: "MOW", departure_date: Date.new(2017,11, 01), return_date: Date.new(2017,12, 01))
-      @results = @search.results
+      @search = traveller.searches.new(origin: "MOW", departure_date: Date.new(2017,11, 01), return_date: Date.new(2017,12, 01))
+      @results = @search.flight_results
       @result = @results.first
     end
 
@@ -25,8 +25,10 @@ RSpec.describe Search, type: :model do
   end
 
   describe "travel routes by budget" do
+    let!(:traveller) { create(:traveller) }
+
     before do
-      @search = Search.new(origin: "MOW", departure_date: Date.new(2017,11, 01), return_date: Date.new(2017,11, 03), budget: 1000)
+      @search = traveller.searches.new(origin: "MOW", departure_date: Date.new(2017,11, 01), return_date: Date.new(2017,11, 03), budget: 1000)
     end
     it "gets a journey length from the search dates" do
       expect(@search.journey_length).to eq 2
