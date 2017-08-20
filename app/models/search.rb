@@ -19,13 +19,13 @@ class Search < ApplicationRecord
     end
   end
 
-  # def self.api_key=(api_key)
-  #   @api_key = de802dc5fcdd7bdd866adf7001fc06df
-  # end
+  def self.api_key=(api_key)
+     @api_key = api_key
+  end
 
-  # def self.api_key
-  #   @api_key = de802dc5fcdd7bdd866adf7001fc06df
-  # end
+  def self.api_key
+     @api_key
+  end
 
   def destination_results
     unless budget.nil?
@@ -46,7 +46,7 @@ class Search < ApplicationRecord
         origin: self.origin,
         departure_date: self.departure_date,
         return_date: self.return_date,
-        token: 'de802dc5fcdd7bdd866adf7001fc06df',
+        token: Search.api_key,
         format: :json,
         currency: self.traveller.currency
         })
