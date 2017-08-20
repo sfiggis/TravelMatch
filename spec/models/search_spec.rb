@@ -37,7 +37,6 @@ RSpec.describe Search, type: :model do
     end
 
     it "finds airports that match the budget criteria" do
-      binding.pry
        expect(@search.destination_results.count).to be > 0
      end
 

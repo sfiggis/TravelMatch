@@ -5,6 +5,7 @@ Feature: Traveller Budget
     Given they are registered
       And they are logged in
       And they are on the search page
+    When they click the match button
     When they choose a budget range
-      And they click the search button
+      And they click the second match button
     Then they have a new search with a budget range

@@ -4,7 +4,7 @@ RSpec.describe SearchesController, :type => :controller do
 
   render_views
 
-describe "POST #create" do
+describe "PUT #create" do
   let!(:traveller) { create(:traveller) }
       before { subject.stub(current_traveller: traveller, authenticate_traveller!: true) }
   before do
@@ -15,9 +15,10 @@ describe "POST #create" do
     end
 
     it "redirects to the show template" do
-      # post :create, :params => { search: { departureDate: Date.new(2017,11, 01), returnDate: Date.new(2017,12, 01), origin: "MOW", travellerId: traveller.id} }
-
-      # expect(response).to redirect_to(assigns(:search))
+      @search = traveller.searches.create!
+      subject { put :update, id: @search.id }
+      put :update, :params => {id: @search.id, search: {departureDate: Date.new(2017,11, 01), returnDate: Date.new(2017,12, 01), origin: "MOW", travellerId: traveller.id} }
+      expect(response.content_type).to eq("application/json")
     end
   end
 
@@ -30,10 +31,5 @@ describe "POST #create" do
       @traveller.save!
       @search = @traveller.searches.create(departure_date: Date.new(2017,11, 01), return_date: Date.new(2017,12, 01), origin: "MOW")
     end
-
-    # it "renders the index template" do
-    #   get :show, params: { id: @search.id, format: :json }
-    #   expect(response).to render_template(:show)
-    # end
   end
 end

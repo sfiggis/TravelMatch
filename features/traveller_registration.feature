@@ -1,5 +1,4 @@
 Feature: Traveller Registration
-@wip
 @javascript
   Scenario: A traveller registers with the site
     Given they are on the sign up page
