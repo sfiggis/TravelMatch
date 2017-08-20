@@ -27,11 +27,13 @@ class Search < ApplicationRecord
   #   @api_key = de802dc5fcdd7bdd866adf7001fc06df
   # end
 
-  def destination_results(budget)
-    airports = []
-    countries = Country.all.select{ |country| country.dollars_per_day < self.daily_budget.to_f }
-    countries.each do |country|
-      airports << country.airports.where('iata_code IS NOT NULL AND wikipedia_link IS NOT NULL AND name LIKE ?', "%#{country.capital}%")
+  def destination_results
+    unless budget.nil?
+      airports = []
+      countries = Country.all.select{ |country| country.dollars_per_day < self.daily_budget.to_f }
+      countries.each do |country|
+        airports << country.airports.where('iata_code IS NOT NULL AND wikipedia_link IS NOT NULL AND name LIKE ?', "%#{country.capital}%")
+      end
     end
   end
 

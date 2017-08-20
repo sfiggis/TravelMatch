@@ -4,7 +4,6 @@ class SearchesController < ApplicationController
   before_action :find_search, only: [:update]
   respond_to :json
   def show
-    binding.pry
     @search = Search.find(params[:id])
     respond_to do |format|
       format.json  { render :json => @search.to_json(:include => [:airports], methods: [:flight_results, :destination_results])}
@@ -16,12 +15,13 @@ class SearchesController < ApplicationController
   end
 
   def update
-    binding.pry
     @search.update(search_params)
     # filtering_params(search_params).each do |key, value|
     #   @search.destination_results(value) if value.present?
     # end
-    @search.destination_results(search_params[:budget]) if search_params[:budget].present?
+    if search_params[:budget].present?
+      @search.destination_results
+    end
     response = @search.flight_results
     @search.save
     render json: @search
