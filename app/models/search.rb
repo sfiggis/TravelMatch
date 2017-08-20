@@ -29,10 +29,11 @@ class Search < ApplicationRecord
 
   def destination_results
     unless budget.nil?
+      countries = Country.all.select{ |country| country.in_budget?(self) }
       # airports = []
       # countries coming out as boolean currently. need to get access to their names. heavy on db. put logic on country by passing search in as prop on method?" 
-      countries = []
-      countries << (Country.all.map { |country| country.dollars_per_day < self.daily_budget.to_f }).take(10)
+      # countries = []
+      # countries << (Country.all.map { |country| country.dollars_per_day < self.daily_budget.to_f }).take(10)
       # countries.each do |country|
       #   airports << country.airports.where('iata_code IS NOT NULL AND wikipedia_link IS NOT NULL AND name LIKE ?', "%#{country.capital}%")
       # end

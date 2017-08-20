@@ -22,6 +22,10 @@ class Country < ApplicationRecord
     @current_traveller
   end
 
+  def in_budget?(search)
+    self.dollars_per_day < search.daily_budget.to_f
+  end
+
   def dollars_per_day
     unless self.gdp_ppp.nil?
       percent_diff = ((self.gdp_ppp - 57466.7871132348) / 57466.7871132348 * 100)
