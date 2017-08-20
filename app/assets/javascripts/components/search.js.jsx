@@ -32,6 +32,7 @@ class Search extends React.Component {
       contentType: 'application/json',
       data: data,
       success: function(data, status, xhr) {
+        console.log(this.data);
         view.setState({
           currentSearch: this.data["search"]
           });
@@ -65,6 +66,7 @@ var CreateSearch = React.createClass( {
   },
 
   render() {
+    console.log(this.props.parent)
     return (
       <div className="form">
         <form id="search">
