@@ -16,9 +16,6 @@ class SearchesController < ApplicationController
 
   def update
     @search.update(search_params)
-    # filtering_params(search_params).each do |key, value|
-    #   @search.destination_results(value) if value.present?
-    # end
     if search_params[:budget].present?
       @search.destination_results
       response = @search.flight_results
