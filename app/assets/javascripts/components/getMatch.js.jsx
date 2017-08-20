@@ -11,8 +11,8 @@ class GetMatch extends React.Component {
     this.dataSource();
   };
 
-  componentWillReceiveProps(nextProps) {
-    this.dataSource(nextProps);
+  componentDidMount() {
+    this.dataSource();
   };
 
 
@@ -22,7 +22,7 @@ class GetMatch extends React.Component {
   $.getJSON( "/searches/" + this.props.search.id, function( data ) {
     console.log("SOMETHING")
     console.log(JSON.stringify(data, undefined, 2))
-    // console.log(data)
+    console.log(data)
     component.setState({currentSearch: data});
     }.bind(this));
   };

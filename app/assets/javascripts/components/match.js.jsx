@@ -24,7 +24,6 @@ var Match = React.createClass ({
         returnDate: this.props.returnDate,
         travellerId: this.props.traveller.id,
         budget: this.state.value }});
-    console.log(data);
     var view = this
     $.ajax({
       url: "/searches/" + this.props.search.id,

@@ -28,7 +28,6 @@ class Search < ApplicationRecord
   # end
 
   def destination_results(budget)
-    binding.pry
     airports = []
     countries = Country.all.select{ |country| country.dollars_per_day < self.daily_budget.to_f }
     countries.each do |country|
