@@ -3,7 +3,7 @@ Given(/^they are logged in$/) do
 end
 
 Given(/^they are on the search page$/) do
-  visit root_path
+  visit '/'
 end
 
 When(/^they fill in the departure date$/) do
@@ -25,7 +25,7 @@ When(/^they fill in the return date$/) do
 end
 
 When(/^they click the search button$/) do
-  find_button('Search').trigger('click')
+  find_button('quickSearch').trigger('click')
 end
 
 Given(/^they wait for (\d+) seconds$/) do |n|
