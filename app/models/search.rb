@@ -29,46 +29,48 @@ class Search < ApplicationRecord
 
   def destination_results
     unless budget.nil?
-      airports = []
-      countries = Country.all.select{ |country| country.dollars_per_day < self.daily_budget.to_f }
-      countries.each do |country|
-        airports << country.airports.where('iata_code IS NOT NULL AND wikipedia_link IS NOT NULL AND name LIKE ?', "%#{country.capital}%")
-      end
+      # airports = []
+      # trying to limit output on client side as 
+      countries = (Country.all.map { |country| country.dollars_per_day < self.daily_budget.to_f }).take(10)
+      # countries.each do |country|
+      #   airports << country.airports.where('iata_code IS NOT NULL AND wikipedia_link IS NOT NULL AND name LIKE ?', "%#{country.capital}%")
+      # end
     end
   end
 
   def flight_results
-    results = self.class.get('http://api.travelpayouts.com/v1/prices/cheap', query: {
-      origin: self.origin,
-      departure_date: self.departure_date,
-      return_date: self.return_date,
-      token: 'de802dc5fcdd7bdd866adf7001fc06df',
-      format: :json,
-      currency: self.traveller.currency
-      })
-    body = JSON.parse(results.body)
-    body["data"].map do |destination_ids|
-      destination_ids[1].sort_by { |k, v| v["price"] }
-      @airport = Airport.find_by(iata_code: destination_ids[0])
-      unless @airport.nil?
-        @airport_city = @airport.municipality
+    unless self.origin.nil?
+      results = self.class.get('http://api.travelpayouts.com/v1/prices/cheap', query: {
+        origin: self.origin,
+        departure_date: self.departure_date,
+        return_date: self.return_date,
+        token: 'de802dc5fcdd7bdd866adf7001fc06df',
+        format: :json,
+        currency: self.traveller.currency
+        })
+      body = JSON.parse(results.body)
+      body["data"].map do |destination_ids|
+        destination_ids[1].sort_by { |k, v| v["price"] }
+        @airport = Airport.find_by(iata_code: destination_ids[0])
+        unless @airport.nil?
+          @airport_city = @airport.municipality
+        end
+        routes = []
+        destination_ids[1].map do |route_ids|
+          @route = {
+            price: route_ids[1]["price"],
+            airline: route_ids[1]["airline"],
+            flight_number: route_ids[1]["flight_number"],
+            departure_at: route_ids[1]["departure_at"],
+            return_at: route_ids[1]["return_at"],
+            expires_at: route_ids[1]["expires_at"],
+            destination_code: @airport_city,
+            currency: body["currency"],
+            search_id: self.id
+          }
+        end
+        routes << @route
       end
-      routes = []
-      destination_ids[1].map do |route_ids|
-        @route = {
-          price: route_ids[1]["price"],
-          airline: route_ids[1]["airline"],
-          flight_number: route_ids[1]["flight_number"],
-          departure_at: route_ids[1]["departure_at"],
-          return_at: route_ids[1]["return_at"],
-          expires_at: route_ids[1]["expires_at"],
-          destination_code: @airport_city,
-          currency: body["currency"],
-          search_id: self.id
-        }
-      end
-      routes << @route
     end
-      
   end
 end

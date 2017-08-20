@@ -6,7 +6,7 @@ class SearchesController < ApplicationController
   def show
     @search = Search.find(params[:id])
     respond_to do |format|
-      format.json  { render :json => @search.to_json(:include => [:airports], methods: [:flight_results, :destination_results])}
+      format.json  { render :json => @search.to_json(methods: [:flight_results, :destination_results])}
     end
   end
 
@@ -21,8 +21,8 @@ class SearchesController < ApplicationController
     # end
     if search_params[:budget].present?
       @search.destination_results
+      response = @search.flight_results
     end
-    response = @search.flight_results
     @search.save
     render json: @search
   end

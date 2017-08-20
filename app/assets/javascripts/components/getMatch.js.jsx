@@ -2,17 +2,20 @@ class GetMatch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentSearch: []
+      currentSearch: [],
+      rendered: false
     };
     this.dataSource = this.dataSource.bind(this);
   };
 
   componentWillUpdate() {
-    this.dataSource();
+    if(this.state.rendered === false) {
+      this.dataSource();
+    };
   };
 
   componentDidMount() {
-    this.dataSource();
+      this.dataSource();
   };
 
 
@@ -23,7 +26,10 @@ class GetMatch extends React.Component {
     console.log("SOMETHING")
     console.log(JSON.stringify(data, undefined, 2))
     console.log(data)
-    component.setState({currentSearch: data});
+    component.setState({
+      currentSearch: data,
+      rendered: true
+    });
     }.bind(this));
   };
 
