@@ -15,6 +15,7 @@ class Search extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.request = this.request.bind(this);
     this.show = this.show.bind(this);
+    this.createMatch = this.createMatch.bind(this);
   };
 
   render() {
@@ -41,6 +42,12 @@ class Search extends React.Component {
   })
   };
 
+  createMatch() {
+    this.setState({
+      view: <Match traveller={ this.props.traveller } parent={ this } search={ this.state.currentSearch } origin={ this.state.origin } departureDate={ this.state.departureDate } returnDate={ this.state.returnDate }/>
+    })
+  }
+
   show() {
     this.setState({
       view: <ShowSearch traveller={ this.props.traveller } parent={ this } search={ this.props.search } />
@@ -59,14 +66,7 @@ var CreateSearch = React.createClass( {
     return { value: 0 }
   },
 
-  updateTextInput(event) {
-    console.log(event.target.value)
-    this.setState({value: event.target.value});
-    (e) => this.setState({ budget: e.target.value })  
-  },
-
   render() {
-    console.log(this.props.parent)
     return (
       <div className="form">
         <form id="search">
@@ -79,12 +79,8 @@ var CreateSearch = React.createClass( {
           <fieldset id="return-wrapper">
             <input type="date" id="returnDate" placeholder="Return Date" onChange={ (e) => this.props.parent.setState({ returnDate: e.target.value }) }/>
           </fieldset>
-          <fieldset id="budget-wrapper">
-            <input type="range" id="budget" name="budget" min="300" max="10000" onChange={ this.updateTextInput }/>
-            <h4 className="slider">£{ this.state.value }</h4>
-          </fieldset>
-          <fieldset>
-            <button className="button" onClick={ this.props.parent.handleClick } id="matchButton" value="Match">Match</button>
+          <fieldset id="button-wrapper">
+            <button className="button" onClick={ this.props.parent.createMatch } id="matchButton" value="Match">Match</button>
           </fieldset>  
           <fieldset>
             <button className="button" onClick={ this.props.parent.handleClick } id="searchButton" value="Quick Search">Quick Search</button>

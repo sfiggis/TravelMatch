@@ -1,37 +1,53 @@
-#search {
+.form {
   margin: 3rem;
-  display: inline-block;
-  // text-align: center;
-  position: fixed;
   #budget-wrapper {
-    top: 0;
+  display: inline-block;
+  margin: 0.2rem;
   }
-  fieldset {
-    display: inline-block;
-    margin: 0.2rem;
-    input {
-      height: 4rem;
-    }
-    #matchButton {
-      background-color: #33ffcc;
-      color: white;
-      height: 4rem;
-      width: 10rem;
-      font-size: 2rem;
-      border: none;
-    }
+  .slider {
+    text-align:center;
+  }
+  #matchButton {
+    background-color: #33ffcc;
+    color: white;
+    height: 4rem;
+    width: 10rem;
+    font-size: 2rem;
+    border: none;
+    margin: 1rem;
+  }
+  #match {
+     margin: 3rem auto;
+    text-align: center;
+    margin-top: 12rem;
+  }
+  #search {
+    margin: 3rem auto;
+    text-align: center;
+    margin-top: 12rem;
     #budget-wrapper {
+      top: 0;
+    }
+    fieldset {
       display: inline-block;
       margin: 0.2rem;
+      input {
+        height: 4rem;
+      }
+      h1 {
+        font-family: 'Quicksand', sans-serif;
+        font-weight: bold;
+        color: white;
+      }
+      #searchButton {
+        margin: 1rem;
+        color: white;
+        height: 3rem;
+        width: 10rem;
+        font-size: 1.2rem;
+        border: none;
+        background-color: grey;
+      }
     }
-    .slider {
-      text-align:center;
-    }
-  }
-  h1 {
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
-    color: white;
-
   }
 }
