@@ -71,7 +71,7 @@ var Match = React.createClass ({
             <input type="range" id="budget" name="budget" min="300" max="10000" onChange={ this.updateTextInput }/>
             <h4 className="slider">£{ this.state.value }</h4>
           </fieldset>
-          <fieldset>
+          <fieldset id="match-wrapper">
             <button className="button" onClick={ this.props.parent.handleClick} id="matchButton" value="Match">Match</button>
           </fieldset>
         </form>

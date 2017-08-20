@@ -80,7 +80,7 @@ var CreateSearch = React.createClass( {
             <input type="date" id="returnDate" placeholder="Return Date" onChange={ (e) => this.props.parent.setState({ returnDate: e.target.value }) }/>
           </fieldset>
           <fieldset id="button-wrapper">
-            <button className="button" onClick={ this.props.parent.createMatch } id="matchButton" value="Match">Match</button>
+            <button className="button" onClick={ this.props.parent.createMatch } id="matchLink" value="Match">Match</button>
           </fieldset>  
           <fieldset>
             <button className="button" onClick={ this.props.parent.handleClick } id="searchButton" value="Quick Search">Quick Search</button>
