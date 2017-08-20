@@ -36,6 +36,10 @@ class SearchesController < ApplicationController
     @search = Search.find(params[:id])
   end
 
+  def current_traveller
+    @traveller = Traveller.find(params[:traveller_id])
+  end
+
     def filtering_params(params)
     sliced_params = params.slice(:budget, :origin, :departureDate, :returnDate)
   end
