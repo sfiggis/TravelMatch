@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @traveller = Traveller.first
+    @traveller = current_traveller
     @search = @traveller.searches.create
   end
 
