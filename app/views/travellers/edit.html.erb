@@ -1,13 +1,12 @@
-<h1> Edit your profile</h1>
+<h1 id="edit-header"> Edit your profile</h1>
 
-<%= form_for(@traveller, url: traveller_path(@traveller), action: "put") do |f| %>
+<%= form_for(@traveller, url: traveller_path(@traveller), action: "put", :html => {:class => 'form', :id => 'edit-form'}) do |f| %>
   <%= fields_for :country do |builder| %>
   <fieldset>
-    <%= builder.label :currency %>
-    <%= builder.collection_select(:country_ids, Country.all, :id, :currency) %> 
+    <%= builder.collection_select(:country_ids, Country.all.order(:name), :id, :name, {prompt: "Select a country"},{ :class => 'custom-select'}) %> 
   </fieldset>
 <% end %>
 <fieldset>
-  <%= f.submit "Update" %>
+  <%= f.submit "Update",:id => 'edit-button', :class => 'button' %>
 </fieldset>
 <% end %>

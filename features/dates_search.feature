@@ -1,4 +1,5 @@
 Feature: Dates Search
+  @javascript
   Scenario: A traveller searches for holidays by dates
     Given they are registered
       And they are logged in
@@ -7,7 +8,6 @@ Feature: Dates Search
       And they fill in the origin
       And they fill in the return date
       And they click the search button
-    Given they wait for 20 seconds
     When they have saved a search and routes
       And they are taken to the search page
       Then they see a list of return flights

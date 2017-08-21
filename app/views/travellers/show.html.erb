@@ -1,3 +1,5 @@
-<h1>Profile</h1>
-<h2><%= @traveller.first_name %><%= @traveller.last_name %></h2>
-<h3><%= @home_country.currency %></h3>
+<h1><%= @traveller.first_name %> <%= @traveller.last_name %></h1>
+<% unless @home_country.nil? %>
+  <h2>Home: <%= @home_country.name %>
+  <h3>Currency: <%= @home_country.currency_name %></h3>
+<% end %>

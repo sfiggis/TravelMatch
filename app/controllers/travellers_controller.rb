@@ -1,5 +1,5 @@
 class TravellersController < ApplicationController
-  before_action :authenticate_traveller!
+  # before_action :authenticate_traveller!
   before_action :find_traveller, only: [:show, :edit, :update]
 
   def show

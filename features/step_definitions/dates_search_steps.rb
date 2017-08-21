@@ -3,7 +3,7 @@ Given(/^they are logged in$/) do
 end
 
 Given(/^they are on the search page$/) do
-  visit root_path
+  visit '/'
 end
 
 When(/^they fill in the departure date$/) do
@@ -25,11 +25,7 @@ When(/^they fill in the return date$/) do
 end
 
 When(/^they click the search button$/) do
-  find_button('Search').trigger('click')
-end
-
-Given(/^they wait for (\d+) seconds$/) do |n|
-  sleep(n.to_i)
+  find_button('Quick Search').trigger('click')
 end
 
 When(/^they have saved a search and routes$/) do
@@ -50,13 +46,12 @@ end
 
 
 Then(/^they see a list of searches$/) do
-  @traveller.reload
   expect(@traveller.searches.count).to eq 1
   expect(@traveller.searches.departure_date).to match Date.new(2017,10,2)
   expect(@traveller.searches.return_date).to match Date.new(2017,10,8)
 end
 
 Then(/^they see a list of return flights$/) do
-  expect(page).to have_text("ETH")
-  expect(page).to have_text("RUB")
+  expect(page).to have_content("ETH")
+  expect(page).to have_content("RUB")
 end

@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816161916) do
+ActiveRecord::Schema.define(version: 20170817141515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "airports", force: :cascade do |t|
+    t.string "name"
+    t.string "airport_type"
+    t.float "latitude"
+    t.float "longitude"
+    t.float "elevation"
+    t.string "continent"
+    t.string "iso2"
+    t.string "iso_region"
+    t.string "municipality"
+    t.string "scheduled_service"
+    t.string "gps_code"
+    t.string "iata_code"
+    t.string "local_code"
+    t.string "home_link"
+    t.string "wikipedia_link"
+    t.string "keywords"
+    t.bigint "country_id"
+    t.index ["country_id"], name: "index_airports_on_country_id"
+  end
 
   create_table "countries", force: :cascade do |t|
     t.string "name"
@@ -22,9 +43,10 @@ ActiveRecord::Schema.define(version: 20170816161916) do
     t.string "itu"
     t.string "fips"
     t.string "currency_code"
-    t.string "currency"
+    t.string "currency_name"
     t.string "capital"
     t.string "continent"
+    t.float "gdp_ppp"
   end
 
   create_table "routes", force: :cascade do |t|
@@ -40,11 +62,19 @@ ActiveRecord::Schema.define(version: 20170816161916) do
     t.index ["search_id"], name: "index_routes_on_search_id"
   end
 
+  create_table "search_airports", force: :cascade do |t|
+    t.bigint "search_id"
+    t.bigint "airport_id"
+    t.index ["airport_id"], name: "index_search_airports_on_airport_id"
+    t.index ["search_id"], name: "index_search_airports_on_search_id"
+  end
+
   create_table "searches", force: :cascade do |t|
     t.string "origin"
     t.date "departure_date"
     t.date "return_date"
     t.bigint "traveller_id"
+    t.integer "budget"
     t.index ["traveller_id"], name: "index_searches_on_traveller_id"
   end
 
