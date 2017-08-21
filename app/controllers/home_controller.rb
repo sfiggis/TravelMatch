@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
   def index
-    binding.pry
     @traveller = current_traveller
     @search = @traveller.searches.create
   end
