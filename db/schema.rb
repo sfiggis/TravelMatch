@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817141515) do
+ActiveRecord::Schema.define(version: 20170821013005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,19 +47,6 @@ ActiveRecord::Schema.define(version: 20170817141515) do
     t.string "capital"
     t.string "continent"
     t.float "gdp_ppp"
-  end
-
-  create_table "routes", force: :cascade do |t|
-    t.string "destination_code"
-    t.integer "price"
-    t.string "airline"
-    t.integer "flight_number"
-    t.date "departure_at"
-    t.date "return_at"
-    t.string "currency"
-    t.date "expires_at"
-    t.bigint "search_id"
-    t.index ["search_id"], name: "index_routes_on_search_id"
   end
 
   create_table "search_airports", force: :cascade do |t|
@@ -105,6 +92,7 @@ ActiveRecord::Schema.define(version: 20170817141515) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.integer "home_location_id"
     t.index ["email"], name: "index_travellers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_travellers_on_reset_password_token", unique: true
   end
