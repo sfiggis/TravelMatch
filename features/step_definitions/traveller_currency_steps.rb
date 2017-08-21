@@ -8,7 +8,6 @@ Given(/^they are on the edit profile page$/) do
 end
 
 When(/^they fill in the country field$/) do
-  save_and_open_page
   select @country.name, :from => 'country[country_ids]'
 end
 

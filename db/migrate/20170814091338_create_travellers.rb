@@ -4,6 +4,7 @@ class CreateTravellers < ActiveRecord::Migration[5.1]
       t.string :first_name
       t.string :last_name
       t.string :currency
+      t.string :currency_code
     end
   end
 end
