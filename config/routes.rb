@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :travellers
   resources :searches
   root to: "home#index"
-  resources :countries, :only => [:create]
+  resources :countries, :only => [:create, :show]
 end

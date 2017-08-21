@@ -5,6 +5,10 @@ class CountriesController < ApplicationController
     @country.save
   end
 
+  def show
+    @country = Country.find(params[:id])
+  end
+
   private
 
   def session_params
