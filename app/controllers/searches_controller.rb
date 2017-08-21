@@ -23,7 +23,7 @@ class SearchesController < ApplicationController
       @search.destination_results
     end
     @search.save
-    render 'matches'
+    render json: @search
   end
 
   def update
