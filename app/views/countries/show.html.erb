@@ -1,2 +1,5 @@
 <h1><%= @country.name %></h1>
 <h2>Capital: <%=@country.capital %></h2>
+<%= button_tag(type: 'button') do %>
+  <%= content_tag(:strong, 'Find Flights') %>
+<% end %>
