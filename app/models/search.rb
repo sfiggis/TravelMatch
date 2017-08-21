@@ -1,6 +1,5 @@
 class Search < ApplicationRecord
   belongs_to :traveller
-  has_many :routes
   has_many :search_airports
   has_many :airports, through: :search_airports
   scope :filter_by_traveller, ->(traveller_id) { where traveller_id: traveller_id }
