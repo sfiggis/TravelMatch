@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20170821013005) do
     t.string "first_name"
     t.string "last_name"
     t.string "currency"
+    t.string "currency_code"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "username", default: "", null: false
