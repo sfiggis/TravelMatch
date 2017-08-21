@@ -37,6 +37,7 @@ class Search < ApplicationRecord
     unless self.origin.nil?
       results = self.class.get('http://api.travelpayouts.com/v1/prices/cheap', query: {
         origin: self.origin,
+        destination: self.destination,
         departure_date: self.departure_date,
         return_date: self.return_date,
         token: "de802dc5fcdd7bdd866adf7001fc06df",
@@ -44,6 +45,7 @@ class Search < ApplicationRecord
         currency: self.traveller.currency
         })
       body = JSON.parse(results.body)
+      binding.pry
       body["data"].map do |destination_ids|
         destination_ids[1].sort_by { |k, v| v["price"] }
         @airport = Airport.find_by(iata_code: destination_ids[0])

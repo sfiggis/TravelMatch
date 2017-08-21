@@ -26,7 +26,7 @@ var Match = React.createClass ({
         budget: this.state.value }});
     var view = this
     $.ajax({
-      url: "/searches/" + this.props.search.id + ".json",
+      url: "/searches/" + this.props.search.id + "/update_matches",
       type: 'PUT',
       contentType: 'application/json',
       data: data,

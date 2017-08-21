@@ -6,4 +6,10 @@ Rails.application.routes.draw do
   resources :searches
   root to: "home#index"
   resources :countries, :only => [:create, :show]
+  resources :searches do
+    member do
+      put :update_matches
+      get :matches
+    end
+  end
 end
