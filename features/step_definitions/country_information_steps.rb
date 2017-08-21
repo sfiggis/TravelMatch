@@ -4,22 +4,11 @@ Given(/^there are some countries$/) do
 
 end
 
-Given(/^they have a match query$/) do
-  @search = @traveller.searches.create!(origin: "MOW", departure_date: Date.new(2017,11, 01), return_date: Date.new(2017,11, 03), budget: 1000)
+When(/^they visit a country page$/) do
+  visit country_path(@country)
 end
 
-Given(/^they are on the match results page$/) do
-  visit search_path(@search)
-end
-
-When(/^they have some countries that match their search$/) do
-  expect(@search.destination_results).not_to be_empty
-end
-
-When(/^they click on the country link$/) do
-  click_link('Bermuda')
-end
-
-Then(/^they see more information about the country$/) do
+Then(/^they see information about a country$/) do
+  expect(page).to have_content("Bermuda")
   expect(page).to have_content("Hamilton")
 end
