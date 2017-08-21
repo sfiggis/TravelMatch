@@ -1,3 +1,4 @@
+require 'pry'
 class CountriesController < ApplicationController
   def create
     @country = Country.new(country_params)
@@ -6,6 +7,13 @@ class CountriesController < ApplicationController
   end
 
   def show
+    binding.pry
+    @search = Search.find(params[:id])
+    @country = Country.find(params[:id])
+    @airports = @country.airports.where("municipality is NOT NULL and municipality != ''")
+  end
+
+  def update
     @country = Country.find(params[:id])
   end
 
