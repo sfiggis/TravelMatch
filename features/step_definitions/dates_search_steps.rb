@@ -29,29 +29,30 @@ When(/^they click the search button$/) do
 end
 
 When(/^they have saved a search and routes$/) do
-  @search = @traveller.searches.create!(origin: "LON", departure_date: Date.new(2017,10,2), return_date: Date.new(2017,10,8))
-  @search.routes.create!(
-    price: 12345,
-    airline: "N4",
-    flight_number: 225,
-    departure_at: "2017-10-01T16:45:00Z",
-    return_at: "2017-12-01T12:45:00Z",
-    destination_code: "ETH",
-    currency: "RUB")
+  # @search = @traveller.searches.create!(origin: "LON", departure_date: Date.new(2017,10,2), return_date: Date.new(2017,10,8))
+  # @search.routes.create!(
+  #   # price: 12345,
+    # airline: "N4",
+    # flight_number: 225,
+    # departure_at: "2017-10-01T16:45:00Z",
+    # return_at: "2017-12-01T12:45:00Z",
+    # destination_code: "ETH",
+    # currency: "RUB")
 end
 
-When(/^they are taken to the search page$/) do
-  visit search_path(@search)
-end
+# When(/^they are taken to the search page$/) do
+#   visit search_path(@search)
+# end
 
 
 Then(/^they see a list of searches$/) do
+  page.find('#searchButton').trigger('click')
+   expect(page).to have_content("ETH")
+  expect(page).to have_content("RUB")
   expect(@traveller.searches.count).to eq 1
   expect(@traveller.searches.departure_date).to match Date.new(2017,10,2)
   expect(@traveller.searches.return_date).to match Date.new(2017,10,8)
 end
 
 Then(/^they see a list of return flights$/) do
-  expect(page).to have_content("ETH")
-  expect(page).to have_content("RUB")
 end
