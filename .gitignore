@@ -12,7 +12,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-
+/congig/secrets_backup.yml
 /node_modules
 /yarn-error.log
 

@@ -2,13 +2,41 @@
 <html>
   <head>
     <title>TravelMatch</title>
+    <meta name="turbolinks-cache-control" content="no-cache">
     <%= csrf_meta_tags %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
   </head>
 
   <body>
+    <header>
+      <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a id="nav-bar-img" class="navbar-brand" href="<%= root_path %>"><img alt="Travel Match" src="/noun_390003_cc.svg" height="50">
+          <a class="navbar-brand" href="<%= root_path %>">Travel Match</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="<%= root_path %>">Home</a></li>
+            <li><a href="<%= root_path %>">About</a></li>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+             <li class="dropdown">
+              <a href="<%= traveller_path(current_traveller) %>" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/">Logout</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Profile</li>
+                <li><a href="<%= traveller_path(current_traveller) %>">View Profile</a></li>
+                <li><a href="<%= edit_traveller_path(current_traveller) %>">Edit Profile</a></li>
+              </ul>
+        </header>
     <%= yield %>
   </body>
 </html>

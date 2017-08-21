@@ -6,8 +6,14 @@ git_source(:github) do |repo_name|
 end
 
 
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
+gem 'webmock'
+gem 'httparty'
+gem 'jquery-rails'
 gem "react-rails"
 gem 'devise'
+gem 'popper_js', '~> 1.11.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'
 # Use postgresql as the database for Active Record
@@ -34,13 +40,21 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem "factory_girl_rails", "~> 4.0", :require => false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+end
+
+group :test do
   gem 'pry-byebug'
   gem 'cucumber-rails', :require => false
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
   gem 'rspec-rails', '~> 3.6'
+  gem 'poltergeist'
+  gem 'launchy'
+  gem 'rack_session_access'
+  gem 'rails-controller-testing'
 end
 
 group :development do
