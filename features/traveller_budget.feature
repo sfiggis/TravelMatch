@@ -1,5 +1,4 @@
 Feature: Traveller Budget
-@wip
 @javascript
   Scenario: A traveller adds a budget to a search
     Given they are registered

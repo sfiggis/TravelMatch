@@ -7,8 +7,9 @@ Given(/^they are on the edit profile page$/) do
   visit edit_traveller_path(@traveller)
 end
 
-When(/^they fill in the currency field$/) do
-  select @country.currency_name, :from => 'country[country_ids]'
+When(/^they fill in the country field$/) do
+  save_and_open_page
+  select @country.name, :from => 'country[country_ids]'
 end
 
 When(/^they click save$/) do

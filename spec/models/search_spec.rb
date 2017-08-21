@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Search, type: :model do
 
   before do
-    Search.api_key = "12345"
+    # Search.api_key = "12345"
   end
 
   describe "travel routes by date" do
@@ -26,7 +26,9 @@ RSpec.describe Search, type: :model do
     let!(:traveller) { create(:traveller) }
 
     before do
-      @search = traveller.searches.new(origin: "MOW", departure_date: Date.new(2017,11, 01), return_date: Date.new(2017,11, 03), budget: 1000)
+      @search = traveller.searches.create!(origin: "MOW", departure_date: Date.new(2017,11, 01), return_date: Date.new(2017,11, 03), budget: 1000)
+      @bermuda = Country.find_or_create_by(name: "Bermuda", iso2: "BM", iso3: "BMU", itu: "BER", fips: "BD", currency_code: "BMD", currency_name: "Bermudian Dollar", capital: "Hamilton", continent: "NA", gdp_ppp: 52436.0564)
+
     end
     it "gets a journey length from the search dates" do
       expect(@search.journey_length).to eq 2

@@ -11,7 +11,7 @@ RSpec.describe "SearchRequest", :type => :request do
         stub_request(:get, "https://openexchangerates.org/api/latest.json?app_id=12345").
         with(headers: {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
         to_return(status: 200, body: File.read("spec/exchange_rates.json"), headers: {})
-      Search.api_key = "12345"
+      # Search.api_key = "12345"
         stub_request(:get, "http://api.travelpayouts.com/v1/prices/cheap?currency=NOK&departure_date=2017-11-01&format=json&origin=MOW&return_date=2017-11-03&token=12345").
          with(headers: {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
          to_return(status: 200, body: File.read("spec/travel_payouts/cheapest_flights.json"), headers: {})
@@ -24,7 +24,7 @@ RSpec.describe "SearchRequest", :type => :request do
     end
 
     it "finds destinations that fit search budget and are capitals" do
-      put "/searches/#{@search.id}", :params => { search: { departureDate: Date.new(2017,11, 01), returnDate: Date.new(2017,11, 03), origin: "MOW", traveller_id: traveller.id, budget: 300}, session: {:current_traveller => traveller.id}}
+      put "/searches/#{@search.id}", :params => { search: { departureDate: Date.new(2017,11, 01), returnDate: Date.new(2017,11, 03), origin: "MOW", traveller_id: traveller.id, budget: 1000}, session: {:current_traveller => traveller.id}}
       expect(traveller.searches.first.destination_results).not_to be_empty
     end
   end

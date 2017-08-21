@@ -20,7 +20,11 @@ class Search < ApplicationRecord
   end
 
   def self.api_key
-    @api_key = Rails.application.secrets.travel_payouts_key
+    @api = if Rails.env.development? or Rails.env.test?
+      "12345"
+    else
+      sRails.application.secrets.travel_payouts_key
+    end
   end
 
   def destination_results
