@@ -1,9 +1,9 @@
 class TravellersController < ApplicationController
-  # before_action :authenticate_traveller!
+  before_action :authenticate_traveller!
   before_action :find_traveller, only: [:show, :edit, :update]
 
   def show
-    @home_country = Country.find(@traveller.traveller_countries.find_by(home: true).country_id)
+    @home_country = Country.find_by(id: @traveller.home_location_id)
   end
 
   def edit
@@ -12,8 +12,7 @@ class TravellersController < ApplicationController
   def update
     @country = Country.find(traveller_params[:country_ids])
     @traveller.update(traveller_params)
-    @home = @traveller.traveller_countries.where(country_id: @country.id)
-    @home.update(home: true)
+    @traveller.update(home_location_id: @country.id)
     redirect_to traveller_path(@traveller)
   end
 
