@@ -13,4 +13,10 @@ Rails.application.routes.draw do
     end
   end
   resources :airports, :only => [:update]
+  resources :airports do
+    member do
+      put :capital_update
+      get :capital_flights
+    end
+  end
 end
