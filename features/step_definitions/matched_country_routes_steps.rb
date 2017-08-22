@@ -3,7 +3,7 @@ When(/^they are on the country show page$/) do
 end
 
 When(/^they click to see routes$/) do
-  click_on 'Find Flights'
+  click_on 'Top Flights'
 end
 
 Then(/^they see a list of cheapest flights to that destination$/) do

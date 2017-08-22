@@ -13,6 +13,7 @@ class TravellersController < ApplicationController
     @country = Country.find(traveller_params[:country_ids])
     @traveller.update(traveller_params)
     @traveller.update(home_location_id: @country.id)
+    @traveller.save
     redirect_to traveller_path(@traveller)
   end
 
