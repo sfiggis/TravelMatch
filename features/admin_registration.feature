@@ -1,5 +1,4 @@
 Feature: Admin Registration
-@wip
   Scenario: An admin registers
     Given they are on the admin sign up page
       And they enter their admin email
