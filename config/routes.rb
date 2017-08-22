@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   devise_for :admins, controllers: { sessions: 'admins/sessions' }
   authenticate :traveller do
     resources :travellers, only: [:new, :create, :edit, :update, :destroy]
-    resources :admins
   end
 
   devise_scope :admin do
