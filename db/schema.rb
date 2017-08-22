@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170822211133) do
+ActiveRecord::Schema.define(version: 20170822225035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20170822211133) do
     t.string "continent"
     t.float "gdp_ppp"
     t.string "airport_code"
+    t.text "content"
   end
 
   create_table "search_airports", force: :cascade do |t|

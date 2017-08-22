@@ -1,0 +1,11 @@
+<h1 id="edit-header"><%= @country.name %></h1>
+
+<%= form_for(@country, url: country_path(@country), action: "put", :html => {:class => 'form', :id => 'edit-form'}) do |f| %>
+  <fieldset>
+    <%= f.label :content %>
+    <%= f.text_area :content %> 
+  </fieldset>
+  <fieldset>
+    <%= f.submit "Update",:id => 'edit-button', :class => 'button' %>
+  </fieldset>
+<% end %>
