@@ -13,11 +13,6 @@
   </head>
 
   <body>
-    <header>
-      <% if traveller_signed_in? %>
-        <%= render partial: '/layouts/home/traveller_header' %>
-      <% end %>
-        </header>
     <%= yield %>
   </body>
 </html>
