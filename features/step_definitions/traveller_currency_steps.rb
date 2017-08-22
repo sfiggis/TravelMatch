@@ -16,9 +16,9 @@ When(/^they click save$/) do
 end
 
 Then(/^they have a currency$/) do
+  @traveller.reload
   expect(@traveller.countries.count).to eq 1
-  expect(@traveller.traveller_countries.first.home).to eq true
-  expect(Country.find(@traveller.traveller_countries.first.country_id).currency_name).to eq "Bermudian Dollar"
+  expect(@traveller.home_location_id).to eq @country.id
 end
 
 When(/^they are redirected to their profile page$/) do
