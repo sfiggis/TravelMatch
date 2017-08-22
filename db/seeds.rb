@@ -13,7 +13,7 @@ airports = CSV.read(Rails.root.join('data_files/airports.csv'))
 
 airports_list = []
 airports.each do |airport|
-  if airport[2] == "large_airport" || airport[2] == "medium_airport"
+  if airport[2] == "large_airport" && airport[10] != '' && airport[16] != ''
     airports_list << airport
   end
 end
