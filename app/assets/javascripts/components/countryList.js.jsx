@@ -4,10 +4,8 @@ var CountryList = React.createClass({
     if(this.props.countries !== undefined && this.props.countries !== null) {
       const listItems = this.props.countries.map((country) =>
         <li className="country" key={ country.id }>
-        <Country country={ country } />
+        <Country search={ this.props.search } country={ country } />
       </li>)
-
-      console.log(listItems);
 
       return (
         <div>

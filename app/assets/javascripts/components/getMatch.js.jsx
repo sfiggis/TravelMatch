@@ -21,7 +21,7 @@ class GetMatch extends React.Component {
 
   dataSource() {
   var component = this;
-  $.getJSON( "/searches/" + this.props.search.id, function( data ) {
+  $.getJSON( "/searches/" + this.props.search.id + "/matches", function( data ) {
     component.setState({
       currentSearch: data,
       rendered: true

@@ -44,6 +44,7 @@ class Search < ApplicationRecord
         currency: self.traveller.currency
         })
       body = JSON.parse(results.body)
+      binding.pry
       body["data"].map do |destination_ids|
         destination_ids[1].sort_by { |k, v| v["price"] }
         @airport = Airport.find_by(iata_code: destination_ids[0])

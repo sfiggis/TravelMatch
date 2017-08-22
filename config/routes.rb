@@ -5,5 +5,18 @@ Rails.application.routes.draw do
   resources :travellers
   resources :searches
   root to: "home#index"
-  resources :countries, :only => [:create, :show]
+  resources :countries, :only => [:create, :show, :update]
+  resources :searches do
+    member do
+      put :update_matches
+      get :matches
+    end
+  end
+  resources :airports, :only => [:update]
+  resources :airports do
+    member do
+      put :capital_update
+      get :capital_flights
+    end
+  end
 end

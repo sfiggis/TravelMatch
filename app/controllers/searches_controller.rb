@@ -1,23 +1,34 @@
+require 'pry'
 class SearchesController < ApplicationController
-  skip_before_action :verify_authenticity_token, :only => :update
-  before_action :find_search, only: [:update]
+  skip_before_action :verify_authenticity_token, :only => [:update, :update_matches]
+  before_action :find_search, only: [:update, :update_matches]
   def show
     @search = Search.find(params[:id])
     respond_to do |format|
-      format.json  { render :json => @search.to_json(methods: [:flight_results, :destination_results])}
+      format.json  { render :json => @search.to_json(methods: [:flight_results])}
     end
   end
 
-  def create
+  def matches
+    @search = Search.find(params[:id])
+    respond_to do |format|
+      format.json  { render :json => @search.to_json(methods: [:destination_results])}
+    end
+    # response = @search.flight_results
+  end
 
+  def update_matches
+    @search.update(search_params)
+    if search_params[:budget].present?
+      @search.destination_results
+    end
+    @search.save
+    render json: @search
   end
 
   def update
     @search.update(search_params)
-    if search_params[:budget].present?
-      @search.destination_results
-      response = @search.flight_results
-    end
+    response = @search.flight_results
     @search.save
     render json: @search
   end
@@ -35,7 +46,7 @@ class SearchesController < ApplicationController
     @traveller = Traveller.find(params[:traveller_id])
   end
 
-    def filtering_params(params)
+  def filtering_params(params)
     sliced_params = params.slice(:budget, :origin, :departureDate, :returnDate)
   end
 end
