@@ -37,6 +37,7 @@ class Search extends React.Component {
         view.setState({
           currentSearch: this.data["search"]
           });
+        console.log(view);
         view.show();
     }
   })

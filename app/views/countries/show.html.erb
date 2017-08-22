@@ -1,8 +1,4 @@
 <h1><%= @country.name %></h1>
 <h2>Capital: <%=@country.capital %></h2>
-<% @airports.each do |airport| %>
-<a href="https://en.wikipedia.org/wiki/<%= airport.municipality %>"><h2><%= airport.municipality unless nil%></h2></a>
-  <a href="<%=airport.wikipedia_link unless nil%>"><h3><%= airport.name %></h3></a>
-<% end %>
-  <%= button_to "Find Flights", { :controller => 'countries', :action => :update,
-  :id => @country.id }, :method => :put %>
+
+<%= react_component("AirportsList", {country: @country, airports: @airports, search: @search}) %>

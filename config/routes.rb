@@ -12,4 +12,5 @@ Rails.application.routes.draw do
       get :matches
     end
   end
+  resources :airports, :only => [:update]
 end

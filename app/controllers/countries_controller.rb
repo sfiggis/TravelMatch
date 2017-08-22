@@ -7,8 +7,9 @@ class CountriesController < ApplicationController
   end
 
   def show
-    binding.pry
-    @search = Search.find(params[:id])
+    if params[:search]
+      @search = Search.find(params[:search])
+    end
     @country = Country.find(params[:id])
     @airports = @country.airports.where("municipality is NOT NULL and municipality != ''")
   end

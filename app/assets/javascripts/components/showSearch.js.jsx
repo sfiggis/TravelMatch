@@ -16,7 +16,6 @@ componentWillReceiveProps() {
 }
 
   render() {
-    console.log(this)
     if (this.state.currentSearch !== []) {
       return (
         <div id="show-search">
