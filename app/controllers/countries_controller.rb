@@ -1,5 +1,16 @@
 require 'pry'
 class CountriesController < ApplicationController
+
+  def edit
+    @country = Country.find(params[:id])
+  end
+
+  def update
+    @country = Country.find(params[:id])
+    @country.update(country_params)
+    @country.save
+  end
+
   def create
     @country = Country.new(country_params)
     Country.current_traveller = Traveller.find(session_params[:current_traveller])
@@ -15,20 +26,6 @@ class CountriesController < ApplicationController
     @capital_flights = @airports.where(iata_code: @country.airport_code)
   end
 
-  # def update
-  #   @country = Country.find(params[:id])
-  #   @capital_flights = @country.airports.find_by(iata_code: @country.airport_code)
-  #   if params[:search_id]
-  #     @search = Search.find(params[:search_id])
-  #   else
-  #     @search = current_traveller.searches.new
-  #   end
-  #   @capital_flights.get_flights(@search)
-  #   @capital_flights.flight_results
-  #   @capital_flights.save
-  #   render json: @capital_flights
-  # end
-
   private
 
   def session_params
@@ -36,6 +33,6 @@ class CountriesController < ApplicationController
   end
 
   def country_params
-    params.require(:country).permit(:name, :iso2, :iso3, :itu, :fips, :currency_code, :currency, :capital, :continent, :gdp_ppp)
+    params.require(:country).permit(:name, :iso2, :iso3, :itu, :fips, :currency_code, :currency, :capital, :continent, :gdp_ppp, :content)
   end
 end
