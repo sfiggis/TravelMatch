@@ -16,15 +16,16 @@ When(/^they click save$/) do
 end
 
 Then(/^they have a currency$/) do
-  expect(@traveller.countries.count).to eq 1
-  expect(@traveller.traveller_countries.first.home).to eq true
-  expect(Country.find(@traveller.traveller_countries.first.country_id).currency_name).to eq "Bermudian Dollar"
+  @traveller.reload
+  expect(@traveller.home_location_id).to eq @country.id
+  expect(@traveller.currency_code).to eq "BMD"
 end
 
 When(/^they are redirected to their profile page$/) do
-  expect(page.current_path).to eq "/travellers/#{@traveller.id}"
+  expect(page.current_path).to eq traveller_path(@traveller)
 end
 
 Then(/^they see their currency preference$/) do
-  expect(page).to have_content(@country.currency_name)
+  save_and_open_page
+  expect(page).to have_content("Bermudian Dollar")
 end

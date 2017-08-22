@@ -27,6 +27,9 @@ Then(/^they have a new account$/) do
 end
 
 Then(/^they get sent to the homepage$/) do
+  Traveller.first.skip_confirmation!
+  Traveller.first.save
+  page.set_rack_session('warden.user.traveller.key' => Traveller.serialize_into_session(current_traveller))
   expect(page.current_path).to eq '/'
 end
 

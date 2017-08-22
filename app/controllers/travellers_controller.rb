@@ -11,8 +11,8 @@ class TravellersController < ApplicationController
 
   def update
     @country = Country.find(traveller_params[:country_ids])
-    @traveller.update(traveller_params)
-    @traveller.update(home_location_id: @country.id)
+    @traveller.update(home_location_id: @country.id, currency_code: @country.currency_code)
+    @traveller.save
     redirect_to traveller_path(@traveller)
   end
 
@@ -23,8 +23,5 @@ class TravellersController < ApplicationController
 
   def find_traveller
     @traveller = Traveller.find(params[:id])
-  end
-
-  def find_home_country
   end
 end

@@ -1,4 +1,5 @@
 Feature: Traveller Currency
+@wip
   Scenario: A traveller adds a currency to their profile
     Given they are registered
       And they are logged in
