@@ -1,5 +1,4 @@
 Feature: Admin Signin
-@wip
   Scenario: An admin signs in
     Given they are registered as an admin
       And they are on the admin sign in page
