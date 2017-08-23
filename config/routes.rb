@@ -10,9 +10,9 @@ Rails.application.routes.draw do
 
   devise_scope :admin do
     get 'sign_in', to: 'admins/sessions#new'
+    root :to => 'admins#show'
   end
   authenticate :admin do
-    resources :admins
     resources :countries, only: [:new, :create, :edit, :update, :destroy]
     resources :airports, only: [:new, :create, :edit, :update, :destroy]
   end
