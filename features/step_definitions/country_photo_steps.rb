@@ -1,11 +1,13 @@
 When(/^they upload an image for the country$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  attach_file 'Image', File.join(Rails.root, 'features', 'support', 'upload-files', 'bermuda_test.jpg')
 end
 
 Then(/^the country has an image$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(@country.images.count).to eq 1
 end
 
 Then(/^the image is displayed on the page$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  @image = @country.images.first
+  @image = JSON.parse(@image.image_data)["original"]["id"]
+  expect(page).to have_css("img[src*='#{@image}']")
 end
