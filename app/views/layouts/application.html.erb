@@ -14,11 +14,12 @@
 
   <body>
     <header>
-      <% binding.pry %>
       <% if traveller_signed_in? %>
         <%= render partial: '/layouts/home/traveller_header' %>
+      <% elsif admin_signed_in? %>
+        <%= render partial: '/layouts/admins/admin_header' %>
       <% end %>
-        </header>
+    </header>
     <%= yield %>
   </body>
 </html>
