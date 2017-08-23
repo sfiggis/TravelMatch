@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   authenticate :admin do
     resources :admins
     resources :countries, only: [:new, :create, :edit, :update, :destroy]
+    resources :airports, only: [:new, :create, :edit, :update, :destroy]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :travellers
