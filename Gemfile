@@ -5,7 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
+gem "roda"
+gem "figaro"
+gem "image_processing"
+gem "mini_magick", ">= 4.3.5"
+gem "aws-sdk", "~> 2.1"
+gem "shrine"
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'webmock'

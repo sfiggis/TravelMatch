@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170822225035) do
+ActiveRecord::Schema.define(version: 20170823105356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20170822225035) do
     t.string "wikipedia_link"
     t.string "keywords"
     t.bigint "country_id"
+    t.text "content"
     t.index ["country_id"], name: "index_airports_on_country_id"
   end
 
@@ -71,6 +72,16 @@ ActiveRecord::Schema.define(version: 20170822225035) do
     t.float "gdp_ppp"
     t.string "airport_code"
     t.text "content"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "name"
+    t.text "image_data"
+    t.string "imageable_type"
+    t.bigint "imageable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
   end
 
   create_table "search_airports", force: :cascade do |t|

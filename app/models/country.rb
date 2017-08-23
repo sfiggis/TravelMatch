@@ -3,6 +3,8 @@ class Country < ApplicationRecord
   has_many :travellers, through: :traveller_countries
   accepts_nested_attributes_for :travellers
   has_many :airports
+  has_many :images, :as => :imageable, dependent: :destroy
+  accepts_nested_attributes_for :images
 
   include HTTParty
 
