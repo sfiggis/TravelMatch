@@ -19,10 +19,10 @@ class Airport extends React.Component {
   request() {
     let data = JSON.stringify({
       search_id: this.props.search.id,
-      airport_id: this.props.airport.id });
+      id: this.props.airport.id });
     var view = this
     $.ajax({
-      url: "/airports/" + this.props.airport.id,
+      url: "/airports/" + this.props.airport.id + "get_flights",
       type: 'PUT',
       contentType: 'application/json',
       data: data,

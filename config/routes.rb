@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     member do
       put :capital_update
       get :capital_flights
+      put :get_flights
+      patch :get_flights
     end
   end
 end
