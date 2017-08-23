@@ -2,7 +2,8 @@ class Airport < ApplicationRecord
   belongs_to :country, optional: true
   has_many :search_airports
   has_many :searches, through: :search_airports
-  has_many :images, :as => :imageable
+  has_many :images, :as => :imageable, dependent: :destroy
+  accepts_nested_attributes_for :images
 
   include HTTParty
 
