@@ -10,13 +10,17 @@ class AirportsList extends React.Component {
   };
 
   countryFlights() {
+    var search;
+    if(this.props.search) {
+      search = this.props.search.id
+    }
     let data = JSON.stringify({
-      search_id: this.props.search.id,
+      search_id: search,
       country_id: this.props.country.id,
       });
       var view = this
       $.ajax({
-        url: "/airports/" + this.props.search.id + "/capital_update",
+        url: "/airports/" + this.props.country.id + "/capital_update",
         type: 'PUT',
         contentType: 'application/json',
         data: data,
@@ -42,6 +46,7 @@ class AirportsList extends React.Component {
     this.flightList();
   };
   render() {
+    console.log(this)
     if(this.props.airports !== undefined && this.props.airports !== null) {
       const listItems = this.props.airports.map((airport) =>
         <li className="airport" key={ airport.id }>
