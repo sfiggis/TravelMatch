@@ -1,5 +1,4 @@
 Feature: Country Photos
-@wip
   Scenario: An admin adds a photo to a country
     Given they are registered as an admin
       And they are already signed in as an admin

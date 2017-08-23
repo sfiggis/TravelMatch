@@ -15,6 +15,10 @@ When(/^they update the destination$/) do
   click_on 'Update'
 end
 
+Then(/^the admin is redirected to the destination show page$/) do
+  expect(page.current_path).to eq country_path(@country)
+end
+
 Then(/^the destination has content$/) do
   @destination.reload
   expect(@destination.content).to eq @text
