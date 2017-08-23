@@ -1,20 +1,28 @@
 class AirportsController < ApplicationController
-  before_action :authenticate_traveller!
   def edit
     @airport = Airport.find(params[:id])
+    @image = @airport.images.build
   end
 
   def update
     @airport = Airport.find(params[:id])
     @airport.update(airport_params)
     @airport.save
-    redirect_to country_path(@airport.country)
+    redirect_to airport_path(@airport)
   end
 
   def show
     @airport = Airport.find(params[:id])
+    @images = @airport.images
+    @image_urls = []
+    @airport.images.each do | image |
+      @image_url = ImageUploader::Attacher.new(image, :image)
+      @image_urls << @image_url.url(:small) unless @image_url.url(:small).nil?
+    end
+    # binding.pry
     respond_to do |format|
-      format.json  { render :json => @airport.to_json(data: @flights.to_json)}
+      format.json  { render :json => @airport.as_json.merge(images: @image_urls) }
+      format.html
     end
   end
 
@@ -50,6 +58,6 @@ class AirportsController < ApplicationController
 
   private
   def airport_params
-    params.require(:airport).permit(:content)
+    params.require(:airport).permit(:content, :images_attributes => [:image])
   end
 end
