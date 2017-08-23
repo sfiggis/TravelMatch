@@ -9,7 +9,7 @@ class Airport < ApplicationRecord
     @routes
   end
 
-  def get_flights(search)
+  def get_flights(search, current_traveller)
     if search.traveller.currency_code   
       @currency = search.traveller.currency_code
     else
@@ -18,13 +18,15 @@ class Airport < ApplicationRecord
 
     if search.origin
       @origin = Country.find_by(airport_code: search.origin)
-    else
-      @home = Country.find(search.traveller.home_location_id)
+      @origin.iso2
+    elsif current_traveller.home_location_id
+      @home = Country.find(current_traveller.home_location_id)
       @origin = @home.iso2
-      # @origin = Airport.find_by(iso2: @home.iso2)
+    else
+       @origin = 'LON'
     end
     results = self.class.get('http://api.travelpayouts.com/v1/prices/monthly', query: {
-      origin: @origin.iso2,
+      origin: @origin,
       destination: self.iso2,
       token: "de802dc5fcdd7bdd866adf7001fc06df",
       format: :json,
@@ -32,6 +34,7 @@ class Airport < ApplicationRecord
     })
     body = JSON.parse(results.body)
     @routes = []
+    binding.pry
     body["data"].map do |destination_ids|
       @city = Airport.find_by(iata_code: destination_ids[1]["destination"])
       if @city.nil?

@@ -1,5 +1,5 @@
 class AirportsController < ApplicationController
-
+  before_action :authenticate_traveller!
   def edit
     @airport = Airport.find(params[:id])
   end
@@ -34,14 +34,13 @@ class AirportsController < ApplicationController
 
   def capital_update
     @country = Country.find(params[:country_id])
-    binding.pry
     @capital_flights = @country.airports.find_by(iso2: @country.iso2)
     if params[:search_id]
       @search = Search.find(params[:search_id])
     else
       @search = current_traveller.searches.new
     end
-    @capital_flights.get_flights(@search)
+    @capital_flights.get_flights(@search, current_traveller)
     @capital_flights.flight_results
     @capital_flights.save
     respond_to do |format|
