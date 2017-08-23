@@ -7,17 +7,15 @@ Given(/^they are on the edit destination page$/) do
 end
 
 When(/^they add a description for the destination$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  @text = "Warm-heartedness reinforces our self-confidence giving us not a blind confidence, but a sense of confidence based on reason. When you have that you can act transparently, with nothing to hide! Likewise, if you are honest, the community will trust you. Trust brings friendship, as a result of which you can always feel happy. Whether you look to the right or the left, you will always be able to smile."
+  fill_in 'Content', with: @text
 end
 
 When(/^they update the destination$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  click_on 'Update'
 end
 
 Then(/^the destination has content$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then(/^the admin is redirected to the destination show page$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  @destination.reload
+  expect(@destination.content).to eq @text
 end
