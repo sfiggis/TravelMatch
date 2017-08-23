@@ -1,5 +1,4 @@
 Feature: Updating Destination info
-@wip
   Scenario: An admin adds information to a destination
     Given they are registered as an admin
       And they are already signed in as an admin

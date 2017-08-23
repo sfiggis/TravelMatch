@@ -3,12 +3,17 @@ class CountriesController < ApplicationController
 
   def edit
     @country = Country.find(params[:id])
+    @image = @country.images.build
   end
 
   def update
     @country = Country.find(params[:id])
     @country.update(country_params)
-    @country.save
+    if @country.save
+      redirect_to country_path(@country)
+    else
+      render :edit
+    end
   end
 
   def create
@@ -33,6 +38,6 @@ class CountriesController < ApplicationController
   end
 
   def country_params
-    params.require(:country).permit(:name, :iso2, :iso3, :itu, :fips, :currency_code, :currency, :capital, :continent, :gdp_ppp, :content)
+    params.require(:country).permit(:name, :iso2, :iso3, :itu, :fips, :currency_code, :currency, :capital, :continent, :gdp_ppp, :content, :images_attributes => [:image])
   end
 end
