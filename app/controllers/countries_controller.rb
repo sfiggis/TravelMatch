@@ -23,12 +23,14 @@ class CountriesController < ApplicationController
   end
 
   def show
+    binding.pry
     if params[:search]
       @search = Search.find(params[:search])
     end
     @country = Country.find(params[:id])
     @airports = @country.airports.where("municipality is NOT NULL and municipality != ''")
     @capital_flights = @airports.where(iata_code: @country.airport_code)
+    @images = @country.images
   end
 
   private
