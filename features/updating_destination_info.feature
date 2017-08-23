@@ -8,4 +8,4 @@ Feature: Updating Destination info
     When they add a description for the destination
       And they update the destination
     Then the destination has content
-      And the admin is redirected to the country show page
+      And the admin is redirected to the airport show page
