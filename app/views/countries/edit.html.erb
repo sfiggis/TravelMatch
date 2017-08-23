@@ -5,6 +5,11 @@
     <%= f.label :content %>
     <%= f.text_area :content %> 
   </fieldset>
+  <%= f.fields_for :images do |builder| %>
+    <%= builder.label :image %>
+    <%= builder.hidden_field :image, value: @image.image_data %>
+    <%= builder.file_field :image %>
+  <% end %>
   <fieldset>
     <%= f.submit "Update",:id => 'edit-button', :class => 'button' %>
   </fieldset>
