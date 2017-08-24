@@ -10,7 +10,6 @@ class ShowSearch extends Search {
 componentWillReceiveProps() {
   var component = this;
   $.getJSON( "/searches/" + this.props.search.id, function( data ) {
-    console.log(JSON.stringify(data, undefined, 2))
     component.setState({currentSearch: data});
     }.bind(this));
 }

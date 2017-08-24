@@ -5,7 +5,6 @@ class FlightsList extends React.Component {
       <li className="flight" key={ flight[0] }>
         <Flight airport={ this.props.airport } country={ this.props.country } flight={ flight } parent={ this }/>
       </li>)
-    { console.log(listItems)}
     return(
       <div>{ listItems }</div>
       )
