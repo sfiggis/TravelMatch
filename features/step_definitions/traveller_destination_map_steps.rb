@@ -8,5 +8,6 @@ When(/^they visit their profile page$/) do
 end
 
 Then(/^they see their home country on the map$/) do
+  #can't find map markers
   expect(page).to have_selector("img[src='data:#{@country.id}']", count: 1)
 end
