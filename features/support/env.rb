@@ -5,6 +5,8 @@
 # files.
 
 require 'cucumber/rails'
+require 'simplecov'
+SimpleCov.start
 
 Capybara.ignore_hidden_elements = false
 
