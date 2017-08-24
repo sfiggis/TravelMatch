@@ -1,3 +1,4 @@
+require 'pry'
 class SearchesController < ApplicationController
   skip_before_action :verify_authenticity_token, :only => [:update, :update_matches]
   before_action :find_search, only: [:update, :update_matches]
@@ -17,6 +18,7 @@ class SearchesController < ApplicationController
   end
 
   def update_matches
+    binding.pry
     @search.update(search_params)
     if search_params[:budget].present?
       @search.destination_results

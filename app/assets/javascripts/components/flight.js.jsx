@@ -1,6 +1,7 @@
 class Flight extends React.Component {
 
   render() {
+    console.log(this);
     return(
       <div>
       <h3><strong>{ this.props.flight.month }</strong></h3>

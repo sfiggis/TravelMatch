@@ -1,3 +1,4 @@
+require 'pry'
 class Airport < ApplicationRecord
   belongs_to :country, optional: true
   has_many :search_airports
@@ -11,15 +12,8 @@ class Airport < ApplicationRecord
     @routes
   end
 
-  def self.token=(token)
-    @token = token
-  end
-
-  def self.token
-    @token
-  end
-
   def get_flights(search, current_traveller)
+    binding.pry
     if search.traveller.currency_code   
       @currency = search.traveller.currency_code
     else
@@ -38,7 +32,7 @@ class Airport < ApplicationRecord
     results = self.class.get('http://api.travelpayouts.com/v1/prices/monthly', query: {
       origin: @origin,
       destination: self.iso2,
-      token: Airport.token,
+      token: Search.token,
       format: :json,
       currency: @currency
     })
