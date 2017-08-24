@@ -3,14 +3,16 @@ Rails.application.routes.draw do
   resources :images, only: [:new, :create, :index, :edit, :update]
   default_url_options :host => 'localhost'
   devise_for :travellers, :controllers => {:registrations => 'travellers/registrations'}
-  devise_for :admins, controllers: { sessions: 'admins/sessions' }
+  devise_for :admins, controllers: { sessions: 'admins/sessions', registrations: 'admins/registrations' }
   authenticate :traveller do
     resources :travellers, only: [:new, :create, :edit, :update, :destroy]
   end
 
+  resources :admins, only: [:index, :show]
+
   devise_scope :admin do
     get 'sign_in', to: 'admins/sessions#new'
-    root :to => 'admins#show'
+    # root :to => 'admins#show'
   end
   authenticate :admin do
     resources :countries, only: [:new, :create, :edit, :update, :destroy]
@@ -19,7 +21,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :travellers
   resources :searches
-  root to: "home#index"
+  devise_scope :traveller do
+    root to: "home#index"
+  end
   resources :countries, :only => [:edit, :create, :show, :update]
   resources :searches do
     member do

@@ -44,7 +44,6 @@ class Search < ApplicationRecord
         currency: self.traveller.currency
         })
       body = JSON.parse(results.body)
-      binding.pry
       body["data"].map do |destination_ids|
         destination_ids[1].sort_by { |k, v| v["price"] }
         @airport = Airport.find_by(iata_code: destination_ids[0])
@@ -57,8 +56,8 @@ class Search < ApplicationRecord
             price: route_ids[1]["price"],
             airline: route_ids[1]["airline"],
             flight_number: route_ids[1]["flight_number"],
-            departure_at: route_ids[1]["departure_at"],
-            return_at: route_ids[1]["return_at"],
+            departure_at: Date.parse(route_ids[1]["departure_at"]).strftime('%a %d %b %Y'),
+            return_at: Date.parse(route_ids[1]["return_at"]).strftime('%a %d %b %Y'),
             expires_at: route_ids[1]["expires_at"],
             destination_code: @airport_city,
             currency: body["currency"],

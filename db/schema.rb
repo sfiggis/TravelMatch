@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170823105356) do
+ActiveRecord::Schema.define(version: 20170823231453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(version: 20170823105356) do
     t.float "gdp_ppp"
     t.string "airport_code"
     t.text "content"
+    t.float "latitude"
+    t.float "longitude"
   end
 
   create_table "images", force: :cascade do |t|

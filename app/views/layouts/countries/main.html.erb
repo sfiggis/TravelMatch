@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TravelMatch</title>
+    <meta name="turbolinks-cache-control" content="no-cache">
+    <%= csrf_meta_tags %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+  </head>
+
+  <body style='background-image: url("<%= @images.first.image_url(:original) %>")' class="country">
+    <header>
+      <% if admin_signed_in? %>
+        <%= render partial: '/layouts/admins/admin_header' %>
+      <% elsif traveller_signed_in? %>
+        <%= render partial: '/layouts/home/traveller_header' %>
+      <% end %>
+      </header>
+      <main>
+      <%= yield %>
+    </main>
+  </body>
+</html>

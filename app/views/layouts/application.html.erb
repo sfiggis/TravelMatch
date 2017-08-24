@@ -10,16 +10,19 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
   </head>
 
-  <body>
+  <body class="home">
     <header>
-      <% if traveller_signed_in? %>
-        <%= render partial: '/layouts/home/traveller_header' %>
-      <% elsif admin_signed_in? %>
+      <% if admin_signed_in? %>
         <%= render partial: '/layouts/admins/admin_header' %>
+      <% elsif traveller_signed_in? %>
+        <%= render partial: '/layouts/home/traveller_header' %>
       <% end %>
-    </header>
-    <%= yield %>
+      </header>
+      <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
