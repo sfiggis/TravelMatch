@@ -6,7 +6,6 @@ Feature: Logout
       And they click on logout
     Then they are logged out
 
-  @wip
   Scenario: An admin logs out
     Given they are registered as an admin
       And they are already signed in as an admin
