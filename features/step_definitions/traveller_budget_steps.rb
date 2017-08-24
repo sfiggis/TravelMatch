@@ -16,7 +16,6 @@ When(/^they click the second match button$/) do
 end
 
 Then(/^they have a new search with a budget range$/) do
-  save_and_open_page
   expect(@traveller.searches.count).to eq 1
   expect(@traveller.searches.first.budget).to eq 1000
 end

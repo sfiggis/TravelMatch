@@ -1,4 +1,5 @@
 Feature: Matched Country Routes
+@javascript
   Scenario: A traveller sees routes for a country match
     Given they are registered
       And they are logged in

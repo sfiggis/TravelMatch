@@ -8,7 +8,6 @@ class AirportsController < ApplicationController
     @airport = Airport.find(params[:id])
     @airport.update(airport_params)
     @airport.save
-    redirect_to airport_path(@airport)
   end
 
   def show

@@ -12,8 +12,12 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
   </head>
-
-  <body style='background-image: url("<%= @images.first.image_url(:original) %>")' class="country">
+  <% if @images.empty?  do %>
+    <body style='background-image: url("/city_fullsize.jpeg")' class="country">
+      <% end %>
+  <% else %>
+    <body style='background-image: url("<%= @images.first.image_url(:original) %>")' class="country">
+  <% end %>
     <header>
       <% if admin_signed_in? %>
         <%= render partial: '/layouts/admins/admin_header' %>
