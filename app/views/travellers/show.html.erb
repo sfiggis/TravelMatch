@@ -1,5 +1,9 @@
-<h1><%= @traveller.first_name %> <%= @traveller.last_name %></h1>
-<% unless @home_country.nil? %>
-  <h2>Home: <%= @home_country.name %>
-  <h3>Currency: <%= @home_country.currency_name %></h3>
-<% end %>
+<div id="traveller-profile">
+  <div id="traveller-info-box">
+    <h1><%= @traveller.first_name %> <%= @traveller.last_name %></h1>
+  <% unless @home_country.nil? %>
+    <h2>Home: <%= @home_country.name %>
+    <h3>Currency: <%= @home_country.currency_name %></h3>
+  <% end %>
+</div>
+</div>
