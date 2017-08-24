@@ -3,7 +3,7 @@ var CountryList = React.createClass({
 
     if(this.props.countries !== undefined && this.props.countries !== null) {
       const listItems = this.props.countries.map((country) =>
-        <li className="country" key={ country.id }>
+        <li className="country-wrapper" key={ country.id }>
         <Country search={ this.props.search } country={ country } />
       </li>)
 

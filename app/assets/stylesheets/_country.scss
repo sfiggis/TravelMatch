@@ -1,8 +1,15 @@
-body .country {
+body.country {
   background-size: cover;
   background-attachment: relative;
   margin: 6rem;
   h1 {
     
   }
+}
+.country-wrapper {
+  position: relative;
+}
+.country {
+  background-color: white;
+  margin: 3rem;
 }
