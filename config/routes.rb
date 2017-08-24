@@ -11,6 +11,23 @@ Rails.application.routes.draw do
   resources :admins, only: [:index, :show]
 
   devise_scope :admin do
+    authenticated  do
+      root to: 'home#index'
+    end
+
+    unauthenticated do
+      root to: 'admins/sessions#new'
+    end
+  end
+
+  devise_scope :traveller do
+    authenticated  do
+      root to: 'home#index'
+    end
+
+    unauthenticated do
+      root to: 'travellers/sessions#new'
+    end
     get 'sign_in', to: 'admins/sessions#new'
     # root :to => 'admins#show'
   end

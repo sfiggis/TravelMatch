@@ -12,8 +12,9 @@
  *
  *= require_tree .
  *= require_self
- */
-
+ */ 
+@import "_country.scss";
+@import "_routes.scss";
 @import "_devise.scss";
 @import "_airports.scss";
 @import "_fonts.scss";
