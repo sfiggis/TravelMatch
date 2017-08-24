@@ -62,6 +62,7 @@ group :test do
   gem 'launchy'
   gem 'rack_session_access'
   gem 'rails-controller-testing'
+  gem 'simplecov', :require => false
 end
 
 group :development do
