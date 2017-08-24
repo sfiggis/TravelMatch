@@ -42,6 +42,7 @@ class AirportsController < ApplicationController
   end
 
   def capital_update
+    binding.pry
     @country = Country.find(params[:country_id])
     @capital_flights = @country.airports.find_by(iso2: @country.iso2)
     if params[:search_id]

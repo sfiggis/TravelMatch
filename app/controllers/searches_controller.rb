@@ -18,6 +18,7 @@ class SearchesController < ApplicationController
   end
 
   def update_matches
+    binding.pry
     @search.update(search_params)
     if search_params[:budget].present?
       @search.destination_results

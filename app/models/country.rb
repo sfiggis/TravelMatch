@@ -26,7 +26,7 @@ class Country < ApplicationRecord
 
   def in_budget?(search)
     self.dollars_per_day < search.daily_budget.to_f
-    Country.current_traveller = search.traveller
+    # Country.current_traveller = search.traveller
   end
 
   def dollars_per_day
