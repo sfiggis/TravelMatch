@@ -1,4 +1,5 @@
 class AirportsController < ApplicationController
+  layout 'airports/main', only: [:edit, :show]
   def edit
     @airport = Airport.find(params[:id])
     @image = @airport.images.build
@@ -8,6 +9,7 @@ class AirportsController < ApplicationController
     @airport = Airport.find(params[:id])
     @airport.update(airport_params)
     @airport.save
+    redirect_to airport_path(@airport)
   end
 
   def show

@@ -1,5 +1,3 @@
 <h1><%= @airport.municipality %></h1>
 <h2>Country: <%=@airport.country.name %></h2>
-<% unless @images.empty? %>
-  <%= image_tag @images.first.image_url(:original) %>
-<% end %>
+<p><%= @airport.content %></p>

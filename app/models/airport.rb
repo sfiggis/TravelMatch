@@ -11,6 +11,14 @@ class Airport < ApplicationRecord
     @routes
   end
 
+  def self.token=(token)
+    @token = token
+  end
+
+  def self.token
+    @token
+  end
+
   def get_flights(search, current_traveller)
     if search.traveller.currency_code   
       @currency = search.traveller.currency_code
@@ -20,7 +28,7 @@ class Airport < ApplicationRecord
 
     if search.origin
       @origin = Country.find_by(airport_code: search.origin)
-      @origin.iso2
+      @origin = @origin.airport_code
     elsif current_traveller.home_location_id
       @home = Country.find(current_traveller.home_location_id)
       @origin = @home.iso2
@@ -30,7 +38,7 @@ class Airport < ApplicationRecord
     results = self.class.get('http://api.travelpayouts.com/v1/prices/monthly', query: {
       origin: @origin,
       destination: self.iso2,
-      token: "de802dc5fcdd7bdd866adf7001fc06df",
+      token: Airport.token,
       format: :json,
       currency: @currency
     })
@@ -48,8 +56,8 @@ class Airport < ApplicationRecord
         price: destination_ids[1]["price"],
         airline: destination_ids[1]["airline"],
         flight_number: destination_ids[1]["flight_number"],
-        departure_at: destination_ids[1]["departure_at"],
-        return_at: destination_ids[1]["return_at"],
+        departure_at: Date.parse(destination_ids[1]["departure_at"]).strftime('%a %d %b %Y'),
+        return_at: Date.parse(destination_ids[1]["return_at"]).strftime('%a %d %b %Y'),
         transfers: destination_ids[1]["transfers"],
         expires_at: destination_ids[1]["expires_at"],
         destination_code: @city,

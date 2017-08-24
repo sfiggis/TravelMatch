@@ -18,13 +18,12 @@ class Search < ApplicationRecord
     end
   end
 
-  def self.api_key
-    @api = if Rails.env.test?
-      "12345"
-    else
-      "de802dc5fcdd7bdd866adf7001fc06df"
-      Rails.application.secrets.travel_payouts_key
-    end
+  def self.token=(token)
+    @token = token
+  end
+
+  def self.token
+    @token
   end
 
   def destination_results
@@ -39,7 +38,7 @@ class Search < ApplicationRecord
         origin: self.origin,
         departure_date: self.departure_date,
         return_date: self.return_date,
-        token: "de802dc5fcdd7bdd866adf7001fc06df",
+        token: Search.token,
         format: :json,
         currency: self.traveller.currency
         })
