@@ -84,7 +84,7 @@ class Airport extends React.Component {
         <h2>{ this.props.airport.municipality }</h2>
         <h3>{ this.props.airport.name }</h3>
         <a href={ "https://en.wikipedia.org/wiki/" + this.props.airport.municipality }><h4>Learn More</h4></a>
-        <button id="learn_more" href={"/airports/" +  this.props.airport.id }>Learn More</button>
+        <button id="learn_more" href={"/airports/" +  this.props.airport.id }>Discover!</button>
       </div>
       )
     }
