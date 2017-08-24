@@ -32,7 +32,12 @@
       display: inline-block;
       margin: 0.2rem;
       input {
-        height: 4rem;
+        height: 5rem;
+        width: 20rem;
+        font-size: 2rem;
+      }
+      button {
+        height: 5rem;
       }
       h1 {
         font-family: 'Quicksand', sans-serif;
