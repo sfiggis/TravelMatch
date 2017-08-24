@@ -19,10 +19,10 @@ componentWillReceiveProps() {
     if (this.state.currentSearch !== []) {
       return (
         <div id="show-search">
-          <h1>Top Flights from { this.state.currentSearch.origin }</h1>
-          <h2>{ this.state.currentSearch.departure_date }</h2>
-          <h3><i className="fa fa-exchange" aria-hidden="true"></i></h3>
-          <h2>{ this.state.currentSearch.return_date }</h2>
+          <h1>Top Flights from <span id="origin">{ this.state.currentSearch.origin }</span></h1>
+          <div id="dates-wrapper">
+            <h2>{ this.state.currentSearch.departure_date }  <i className="fa fa-exchange" aria-hidden="true"></i>  { this.state.currentSearch.return_date }</h2>
+          </div>
           <RouteList airports={ this.state.currentSearch.airports } routes={this.state.currentSearch.flight_results } search={ this.props.search } parent={ this }/>
         </div>
       ) 

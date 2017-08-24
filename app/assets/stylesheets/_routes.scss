@@ -1,0 +1,63 @@
+.routes-list {
+  position: absolute;
+  display: block;
+  .listings {
+    position: relative;
+    display: block;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    .route {
+      background-color: white;
+      border-width: 0.5rem;
+      border-style: solid;
+      border-color: #33ffcc;
+      padding: 2rem;
+      margin: 2rem;
+    }
+    #country-wrapper {
+       display: inline-block;
+       width: 25%;
+       .more-info {
+          position: right;
+          display: inline-block;
+          float: right;
+          background-color: #33ffcc;
+        }
+      }
+    li {
+      display: inline-block;
+      width: 50%;
+      i {
+        font-size: 2rem;
+        margin: 1rem;
+        color: #33ffcc;
+      }
+
+      // border-radius: 0.2;
+      #route-info {
+        background-color: white;
+        border-width: 0.5rem;
+        border-style: solid;
+        border-color: #33ffcc;
+        padding: 2rem;
+        margin: 2rem;
+        h4 {
+          // margin: 3rem;
+          font-family: 'Quicksand', sans-serif;
+          padding: 2rem;
+        }
+        #price-wrap {
+          position: right;
+          display: inline-block;
+          float: right;
+          background-color: #33ffcc;
+          #price {
+              color: white;
+              float: right;
+          }
+        }
+      }
+    }
+  }
+}

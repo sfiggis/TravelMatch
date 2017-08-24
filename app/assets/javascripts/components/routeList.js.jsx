@@ -8,9 +8,8 @@ var RouteList = React.createClass({
       </li>));
 
       return (
-        <div>
-          <h1>Routes</h1>
-          <ul className="project-listings">
+        <div className="routes-list">
+          <ul className="listings">
             { listItems }
           </ul>
         </div>
