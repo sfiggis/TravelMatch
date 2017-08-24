@@ -3,16 +3,14 @@ var CountryList = React.createClass({
 
     if(this.props.countries !== undefined && this.props.countries !== null) {
       const listItems = this.props.countries.map((country) =>
-        <li className="country" key={ country.id }>
-        <Country country={ country } />
+        <li className="route" id="country-wrapper" key={ country.id }>
+        <Country search={ this.props.search } country={ country } />
       </li>)
 
-      console.log(listItems);
-
       return (
-        <div>
+        <div className="routes-list">
           <h1>Countries</h1>
-          <ul className="country-listings">
+          <ul className="listings">
             { listItems }
           </ul>
         </div>

@@ -1,13 +1,7 @@
 .form {
+  font-family: 'Quicksand', sans-serif;
   margin: 3rem;
-  #budget-wrapper {
-  display: inline-block;
-  margin: 0.2rem;
-  }
-  .slider {
-    text-align:center;
-  }
-  #matchButton {
+  #matchButton, #matchLink {
     background-color: #33ffcc;
     color: white;
     height: 4rem;
@@ -16,15 +10,10 @@
     border: none;
     margin: 1rem;
   }
-  #match {
-     margin: 3rem auto;
-    text-align: center;
-    margin-top: 12rem;
-  }
   #search {
     margin: 3rem auto;
     text-align: center;
-    margin-top: 12rem;
+    margin-top: 20%;
     #budget-wrapper {
       top: 0;
     }
@@ -32,7 +21,12 @@
       display: inline-block;
       margin: 0.2rem;
       input {
-        height: 4rem;
+        height: 5rem;
+        width: 20rem;
+        font-size: 2rem;
+      }
+      button {
+        height: 5rem;
       }
       h1 {
         font-family: 'Quicksand', sans-serif;
@@ -49,5 +43,28 @@
         background-color: grey;
       }
     }
+  }
+}
+
+#match {
+  margin: 3rem auto;
+  text-align: center;
+  margin-top: 12rem;
+    .form-wrapper {
+      position: absolute;
+      width: 30rem;
+      background-color: rgba(255, 255, 255, 0.5);
+      padding: 2rem;
+    }
+    #budget-wrapper {
+      display: inline-block;
+      margin: 0.2rem;
+      label {
+        font-size: 3rem;
+      }
+  }
+  .slider {
+    text-align:center;
+    width: 20rem;
   }
 }

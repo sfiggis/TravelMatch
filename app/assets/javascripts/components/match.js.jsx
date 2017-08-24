@@ -26,7 +26,7 @@ var Match = React.createClass ({
         budget: this.state.value }});
     var view = this
     $.ajax({
-      url: "/searches/" + this.props.search.id,
+      url: "/searches/" + this.props.search.id + "/update_matches",
       type: 'PUT',
       contentType: 'application/json',
       data: data,
@@ -66,14 +66,18 @@ var Match = React.createClass ({
     return (
       <div className="form">
         <form id="match">
+          <div className="form-wrapper">
+          <h3>Find your destination match!</h3>
           <fieldset id="budget-wrapper">
             <label>Budget</label>
+            <p>Choose a max budget for your trip</p>
             <input type="range" id="budget" name="budget" min="300" max="1000" onChange={ this.updateTextInput }/>
             <h4 className="slider">£{ this.state.value }</h4>
           </fieldset>
           <fieldset id="match-wrapper">
             <button className="button" onClick={ this.props.parent.handleClick} id="matchButton" value="Match">Match</button>
           </fieldset>
+          </div>
         </form>
       </div>
     )

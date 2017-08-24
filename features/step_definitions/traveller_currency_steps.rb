@@ -8,7 +8,6 @@ Given(/^they are on the edit profile page$/) do
 end
 
 When(/^they fill in the country field$/) do
-  save_and_open_page
   select @country.name, :from => 'country[country_ids]'
 end
 
@@ -17,9 +16,9 @@ When(/^they click save$/) do
 end
 
 Then(/^they have a currency$/) do
+  @traveller.reload
   expect(@traveller.countries.count).to eq 1
-  expect(@traveller.traveller_countries.first.home).to eq true
-  expect(Country.find(@traveller.traveller_countries.first.country_id).currency_name).to eq "Bermudian Dollar"
+  expect(@traveller.home_location_id).to eq @country.id
 end
 
 When(/^they are redirected to their profile page$/) do

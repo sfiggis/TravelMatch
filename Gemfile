@@ -6,6 +6,13 @@ git_source(:github) do |repo_name|
 end
 
 
+gem 'font-awesome-sass', '~> 4.7.0'
+gem "roda"
+gem "figaro"
+gem "image_processing"
+gem "mini_magick", ">= 4.3.5"
+gem "aws-sdk", "~> 2.1"
+gem "shrine"
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'webmock'
@@ -55,6 +62,7 @@ group :test do
   gem 'launchy'
   gem 'rack_session_access'
   gem 'rails-controller-testing'
+  gem 'simplecov', :require => false
 end
 
 group :development do

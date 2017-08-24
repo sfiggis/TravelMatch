@@ -3,6 +3,8 @@ class Country < ApplicationRecord
   has_many :travellers, through: :traveller_countries
   accepts_nested_attributes_for :travellers
   has_many :airports
+  has_many :images, :as => :imageable, dependent: :destroy
+  accepts_nested_attributes_for :images
 
   include HTTParty
 
@@ -24,6 +26,7 @@ class Country < ApplicationRecord
 
   def in_budget?(search)
     self.dollars_per_day < search.daily_budget.to_f
+    # Country.current_traveller = search.traveller
   end
 
   def dollars_per_day
@@ -38,7 +41,8 @@ class Country < ApplicationRecord
       app_id: Country.token,
     })
     body = JSON.parse(results.body)
-    home_country = Country.find(Country.current_traveller.traveller_countries.find_by(home: true).country_id)
+    binding.pry
+    home_country = Country.find(Country.current_traveller.home_location_id)
     # not sure this is right = exhange not touchiing current country choice?
     exchange = body["rates"]["#{home_country.currency_code}"]
     cost_per_day = self.dollars_per_day * exchange

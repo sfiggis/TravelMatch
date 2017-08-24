@@ -9,23 +9,20 @@ class ShowSearch extends Search {
 
 componentWillReceiveProps() {
   var component = this;
-//   // $.getJSON("/searches/" + this.props.search.id, (response) => { this.setState({ currentSearch: response }) });
   $.getJSON( "/searches/" + this.props.search.id, function( data ) {
     console.log(JSON.stringify(data, undefined, 2))
-    // console.log(data)
     component.setState({currentSearch: data});
     }.bind(this));
 }
 
   render() {
-    console.log(this)
     if (this.state.currentSearch !== []) {
       return (
         <div id="show-search">
-          <h1>Search Results</h1>
-          <h2>Origin: { this.state.currentSearch.origin }</h2>
-          <h3>Departure Date: { this.state.currentSearch.departure_date }</h3>
-          <h3>Return Date: { this.state.currentSearch.return_date }</h3>
+          <h1>Top Flights from <span id="origin">{ this.state.currentSearch.origin }</span></h1>
+          <div id="dates-wrapper">
+            <h2>{ this.state.currentSearch.departure_date }  <i className="fa fa-exchange" aria-hidden="true"></i>  { this.state.currentSearch.return_date }</h2>
+          </div>
           <RouteList airports={ this.state.currentSearch.airports } routes={this.state.currentSearch.flight_results } search={ this.props.search } parent={ this }/>
         </div>
       ) 

@@ -10,10 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817141515) do
+ActiveRecord::Schema.define(version: 20170823231453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admins", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "username"
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
 
   create_table "airports", force: :cascade do |t|
     t.string "name"
@@ -33,6 +55,7 @@ ActiveRecord::Schema.define(version: 20170817141515) do
     t.string "wikipedia_link"
     t.string "keywords"
     t.bigint "country_id"
+    t.text "content"
     t.index ["country_id"], name: "index_airports_on_country_id"
   end
 
@@ -47,19 +70,20 @@ ActiveRecord::Schema.define(version: 20170817141515) do
     t.string "capital"
     t.string "continent"
     t.float "gdp_ppp"
+    t.string "airport_code"
+    t.text "content"
+    t.float "latitude"
+    t.float "longitude"
   end
 
-  create_table "routes", force: :cascade do |t|
-    t.string "destination_code"
-    t.integer "price"
-    t.string "airline"
-    t.integer "flight_number"
-    t.date "departure_at"
-    t.date "return_at"
-    t.string "currency"
-    t.date "expires_at"
-    t.bigint "search_id"
-    t.index ["search_id"], name: "index_routes_on_search_id"
+  create_table "images", force: :cascade do |t|
+    t.string "name"
+    t.text "image_data"
+    t.string "imageable_type"
+    t.bigint "imageable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
   end
 
   create_table "search_airports", force: :cascade do |t|
@@ -90,6 +114,7 @@ ActiveRecord::Schema.define(version: 20170817141515) do
     t.string "first_name"
     t.string "last_name"
     t.string "currency"
+    t.string "currency_code"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "username", default: "", null: false
@@ -105,6 +130,7 @@ ActiveRecord::Schema.define(version: 20170817141515) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.integer "home_location_id"
     t.index ["email"], name: "index_travellers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_travellers_on_reset_password_token", unique: true
   end

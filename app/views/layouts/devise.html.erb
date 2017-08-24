@@ -11,7 +11,21 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
   </head>
 
-  <body>
+  <body class="home" id="devise">
+    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a id="nav-bar-img" class="navbar-brand" href="<%= root_path %>"><img alt="Travel Match" src="/noun_390003_cc.svg" height="50">
+        <a class="navbar-brand" href="<%= root_path %>">Travel Match</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="<%= root_path %>">Home</a></li>
+        </ul>
+      </ul>
+     </div>
+   </div>
+ </nav>
     <%= yield %>
   </body>
 </html>

@@ -1,6 +1,5 @@
 class Search < ApplicationRecord
   belongs_to :traveller
-  has_many :routes
   has_many :search_airports
   has_many :airports, through: :search_airports
   scope :filter_by_traveller, ->(traveller_id) { where traveller_id: traveller_id }
@@ -19,12 +18,12 @@ class Search < ApplicationRecord
     end
   end
 
-  def self.api_key
-    @api = if Rails.env.development? or Rails.env.test?
-      "12345"
-    else
-      sRails.application.secrets.travel_payouts_key
-    end
+  def self.token=(token)
+    @token = token
+  end
+
+  def self.token
+    @token
   end
 
   def destination_results
@@ -39,7 +38,7 @@ class Search < ApplicationRecord
         origin: self.origin,
         departure_date: self.departure_date,
         return_date: self.return_date,
-        token: Search.api_key,
+        token: Search.token,
         format: :json,
         currency: self.traveller.currency
         })
@@ -56,8 +55,8 @@ class Search < ApplicationRecord
             price: route_ids[1]["price"],
             airline: route_ids[1]["airline"],
             flight_number: route_ids[1]["flight_number"],
-            departure_at: route_ids[1]["departure_at"],
-            return_at: route_ids[1]["return_at"],
+            departure_at: Date.parse(route_ids[1]["departure_at"]).strftime('%a %d %b %Y'),
+            return_at: Date.parse(route_ids[1]["return_at"]).strftime('%a %d %b %Y'),
             expires_at: route_ids[1]["expires_at"],
             destination_code: @airport_city,
             currency: body["currency"],

@@ -15,5 +15,10 @@
 /congig/secrets_backup.yml
 /node_modules
 /yarn-error.log
+/public/uploads
+coverage
 
 .byebug_history
+
+# Ignore application configuration
+/config/application.yml

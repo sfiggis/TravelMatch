@@ -1,0 +1,4 @@
+<h1><%= @country.name %></h1>
+<h2>Capital: <%=@country.capital %></h2>
+
+<%= react_component("AirportsList", {country: @country, airports: @airports, search: @search}) %>
