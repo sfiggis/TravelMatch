@@ -6,4 +6,4 @@ Feature: Admin Signin
       And they fill in their admin password
       And they click the admin sign in button
     Then they are signed in as an admin
-      And they get sent to the admin page
+      And they get sent to the admin profile page

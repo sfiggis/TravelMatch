@@ -16,7 +16,7 @@ When(/^they update the destination$/) do
 end
 
 Then(/^the admin is redirected to the destination show page$/) do
-  expect(page.current_path).to eq country_path(@country)
+  expect(page.current_path).to eq airports_path(@destination)
 end
 
 Then(/^the destination has content$/) do

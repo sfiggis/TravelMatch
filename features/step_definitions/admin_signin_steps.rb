@@ -23,3 +23,7 @@ end
 Then(/^they are signed in as an admin$/) do
   expect(page).to have_content("Signed in successfully")
 end
+
+Then(/^they get sent to the admin profile page$/) do
+   expect(page.current_path).to eq admin_path(@admin)
+end

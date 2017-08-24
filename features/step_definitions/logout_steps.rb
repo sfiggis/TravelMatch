@@ -1,9 +1,9 @@
-When(/^they are on the home page$/) do
-  visit root_path
+When(/^they are on the traveller profile page$/) do
+  visit traveller_path(@traveller)
 end
 
 When(/^they are on their profile page$/) do
-  visit root_path
+  visit admins_path
 end
 
 When(/^they click on logout$/) do

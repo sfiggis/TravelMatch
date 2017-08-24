@@ -1,3 +1,7 @@
+Given(/^those countries have airports$/) do
+  @country.airports.create!(municipality: "test", iata_code: "BM", iso2: "BM")
+end
+
 When(/^they are on the country show page$/) do
   visit country_path(@country)
 end

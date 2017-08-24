@@ -4,8 +4,9 @@ class Admins::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   # def new
-  #   super
-  # end
+    # binding.pry
+     # super
+   # end
 
   # POST /resource
   # def create
@@ -50,12 +51,13 @@ class Admins::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    admin_path(current_admin)
+    admin_path(resource)
   #   super(resource)
   end
 
   # The path used after sign up for inactive accounts.
-  # def after_inactive_sign_up_path_for(resource)
+  def after_inactive_sign_up_path_for(resource)
   #   super(resource)
-  # end
+  admins_path
+  end
 end

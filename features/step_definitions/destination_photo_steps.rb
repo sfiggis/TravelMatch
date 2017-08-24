@@ -4,11 +4,9 @@ When(/^they upload an image for the destination$/) do
 end
 
 Then(/^the admin is redirected to the airport show page$/) do
-  expect(page.current_path).to eq airport_path(@airport)
+  expect(page.current_path).to eq airport_path(@destination)
 end
 
 Then(/^the destination has an image$/) do
-  @image = @destination.images.first
-  @image = JSON.parse(@image.image_data)["original"]["id"]
-  expect(page).to have_css("img[src*='#{@image}']")
+  expect(@destination.images.count).to eq 1
 end

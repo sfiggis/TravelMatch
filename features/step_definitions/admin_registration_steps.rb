@@ -19,7 +19,7 @@ When(/^they register as an admin$/) do
 end
 
 Then(/^they get sent to the admin page$/) do
-   expect(page.current_path).to eq admin_path(Admin.first.id)
+   expect(page.current_path).to eq admins_path
 end
 
 Then(/^they have a new admin account$/) do

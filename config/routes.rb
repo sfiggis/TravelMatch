@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   mount ImageUploader::UploadEndpoint => "/images"
   resources :images, only: [:new, :create, :index, :edit, :update]
   default_url_options :host => 'localhost'
-  devise_for :travellers, :controllers => {:registrations => 'travellers/registrations'}
+  devise_for :travellers, :controllers => {sessions: 'travellers/sessions', :registrations => 'travellers/registrations'}
   devise_for :admins, controllers: { sessions: 'admins/sessions', registrations: 'admins/registrations' }
   authenticate :traveller do
     resources :travellers, only: [:new, :create, :edit, :update, :destroy]

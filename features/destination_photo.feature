@@ -9,4 +9,3 @@ Feature: Destination Photos
         And they click update
       Then the destination has an image
         And the admin is redirected to the airport show page
-        And the image is displayed on the page

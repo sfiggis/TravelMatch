@@ -8,4 +8,3 @@ Feature: Country Photos
       And they click update
     Then the country has an image
       And the admin is redirected to the country show page
-      And the image is displayed on the page

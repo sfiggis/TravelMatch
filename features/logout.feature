@@ -2,7 +2,7 @@ Feature: Logout
   Scenario: A traveller logs out
     Given they are registered
       And they are logged in
-    When they are on the home page
+    When they are on the traveller profile page
       And they click on logout
     Then they are logged out
 
