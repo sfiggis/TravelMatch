@@ -4,7 +4,7 @@ class Flight extends React.Component {
     return(
       <div>
       <h3><strong>{ this.props.flight.month }</strong></h3>
-      <h4><strong>{ this.props.flight.destination_code }</strong></h4>
+      <a href={"/airports/" + this.props.airport.id }><h4><strong>{ this.props.flight.destination_code }</strong></h4></a>
       <h4>{ this.props.destination_code }</h4>
       <h4>Departure Date: { this.props.flight.departure_at }</h4>
       <h4>Return Date:{ this.props.flight.return_at }</h4>

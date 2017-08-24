@@ -1,5 +1,8 @@
+h1, h2 {
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+}
 .airport {
-  position: relative;
   .airport-wrapper {
   background-color: rgba(255, 255, 255, 0.5);
   position: absolute;
@@ -7,4 +10,29 @@
   margin-bottom: 2rem;
   margin-top: 2rem;
   }
+}
+
+#airport-wrap {
+  vertical-align: top;
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 50%;
+  li {
+    background-color: white;
+      border-width: 0.5rem;
+      border-style: solid;
+      border-color: #33ffcc;
+      padding: 2rem;
+      margin: 2rem;
+      list-style: none;
+  }
+}
+
+#airport-content {
+  margin-top: 3rem;
+}
+
+#top-flights-button {
+  margin-bottom: 3rem;
+  width: 14rem;
 }
