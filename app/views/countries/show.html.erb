@@ -1,8 +1,4 @@
-<% binding.pry %>
 <h1><%= @country.name %></h1>
 <h2>Capital: <%=@country.capital %></h2>
-<% unless @images.empty? %>
-  <%= image_tag @images.first.image_url(:original) %>
-<% end %>
 
 <%= react_component("AirportsList", {country: @country, airports: @airports, search: @search}) %>

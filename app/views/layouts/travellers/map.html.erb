@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TravelMatch</title>
+    <meta name="turbolinks-cache-control" content="no-cache">
+    <%= csrf_meta_tags %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+  </head>
+
+  <body class="map">
+    <header>
+      <% if admin_signed_in? %>
+        <%= render partial: '/layouts/admins/admin_header' %>
+      <% elsif traveller_signed_in? %>
+        <%= render partial: '/layouts/home/traveller_header' %>
+      <% end %>
+      </header>
+    <style>
+      #map {
+        height: 100%;
+       }
+       html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <div id="map" data-destinations="<%= @traveller.countries.all.to_json %>"></div>
+    <script>
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: new google.maps.LatLng(0, 0),
+          zoom: 3,
+          scrollwheel:  false
+        });
+
+        var json = JSON.parse(document.getElementById('map').getAttribute('data-destinations'));
+         console.log(json);
+        for (var i = 0, length = json.length; i < length; i++) {
+          var data = json[i];
+          var latLng = new google.maps.LatLng(data.latitude, data.longitude);
+          // bounds  = new google.maps.LatLngBounds(); 
+          var infowindow = new google.maps.InfoWindow({
+          });
+
+          // Creating the information and div to go on the Label Content
+          var contentString = 
+          '<div class="map_modal">' +
+          '<h2>' + data.name + '</h2>' +
+          '<h4>Capital: ' + data.capital + '</h4>' +
+          '<p>Info: ' + data.content + '</p>' +
+          '</div';
+
+          // Creating a marker and putting it on the map
+          var image = {
+            url: '/noun_390003_cc.svg',
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(50, 60)
+          };
+
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map,
+            icon: image,
+            labelContent: contentString
+          });
+          //setting infowindow to open on click with info relating to relevant bound marker
+          map.setCenter(marker.getPosition());
+          marker.addListener('click', function() {
+            infowindow.setContent(this.labelContent);
+            infowindow.open(map, this);
+            });
+          }
+        }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVHGc4ynDOpgyn1KiwoM_daEun-1RwKrQ&callback=initMap">
+    </script>
+      <main>
+      <%= yield %>
+    </main>
+  </body>
+</html>

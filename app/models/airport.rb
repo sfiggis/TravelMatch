@@ -36,7 +36,6 @@ class Airport < ApplicationRecord
     })
     body = JSON.parse(results.body)
     @routes = []
-    binding.pry
     body["data"].map do |destination_ids|
       @city = Airport.find_by(iata_code: destination_ids[1]["destination"])
       if @city.nil?

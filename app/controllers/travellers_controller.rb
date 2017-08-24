@@ -1,4 +1,5 @@
 class TravellersController < ApplicationController
+  layout 'travellers/map', only: [:show, :edit]
   before_action :authenticate_traveller!
   before_action :find_traveller, only: [:show, :edit, :update]
 

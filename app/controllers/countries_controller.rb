@@ -1,6 +1,5 @@
-require 'pry'
 class CountriesController < ApplicationController
-
+  layout 'countries/main', only: [:show]
   def edit
     @country = Country.find(params[:id])
     @image = @country.images.build
@@ -23,7 +22,6 @@ class CountriesController < ApplicationController
   end
 
   def show
-    binding.pry
     if params[:search]
       @search = Search.find(params[:search])
     end

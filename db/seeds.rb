@@ -23,7 +23,7 @@ airports_list.each do |airport|
 end
 
  country_codes.each_with_index do |country, index|
-   @country = Country.find_or_create_by(name: country[0], iso2: country[1], iso3: country[2], itu: country[3], fips: country[4], currency_code: country[5], currency_name: country[6], capital: country[7], continent: country[8], gdp_ppp: country[11], airport_code: country[12])
+   @country = Country.find_or_create_by(name: country[0], iso2: country[1], iso3: country[2], itu: country[3], fips: country[4], currency_code: country[5], currency_name: country[6], capital: country[7], continent: country[8], gdp_ppp: country[11], airport_code: country[12], latitude: country[13], longitude: country[14])
    @country.airports << Airport.where(iso2: @country.iso2)
  end
 
