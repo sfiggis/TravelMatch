@@ -69,7 +69,6 @@ class Airport extends React.Component {
   // }
   render() {
     if(this.state.currentAirport.images != undefined) {
-      console.log(this);
       return(
         <div id="airport-content">
           <img src={ this.state.currentAirport.images[0] }/>

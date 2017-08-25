@@ -41,7 +41,6 @@ class Country < ApplicationRecord
       app_id: Country.token,
     })
     body = JSON.parse(results.body)
-    binding.pry
     home_country = Country.find(Country.current_traveller.home_location_id)
     # not sure this is right = exhange not touchiing current country choice?
     exchange = body["rates"]["#{home_country.currency_code}"]

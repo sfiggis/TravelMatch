@@ -13,7 +13,6 @@ class Airport < ApplicationRecord
   end
 
   def get_flights(search, current_traveller)
-    binding.pry
     if search.traveller.currency_code   
       @currency = search.traveller.currency_code
     else
