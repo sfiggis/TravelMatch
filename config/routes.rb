@@ -21,12 +21,7 @@ Rails.application.routes.draw do
   end
 
   devise_scope :traveller do
-    authenticated  do
       root to: 'home#index'
-    end
-
-    unauthenticated do
-      root to: 'travellers/sessions#new'
     end
     # get 'sign_in', to: 'admins/sessions#new'
     # # root :to => 'admins#show'
