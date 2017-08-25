@@ -30,7 +30,7 @@ class Airport < ApplicationRecord
     results = self.class.get('http://api.travelpayouts.com/v1/prices/monthly', query: {
       origin: @origin,
       destination: self.iso2,
-      token: Search.token,
+      token: "de802dc5fcdd7bdd866adf7001fc06df",
       format: :json,
       currency: @currency
     })

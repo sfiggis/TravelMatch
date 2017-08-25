@@ -21,10 +21,16 @@ Rails.application.routes.draw do
   end
 
   devise_scope :traveller do
+    authenticated  do
       root to: 'home#index'
     end
-    # get 'sign_in', to: 'admins/sessions#new'
-    # # root :to => 'admins#show'
+
+    unauthenticated do
+      root to: 'travellers/sessions#new'
+    end
+    get 'sign_in', to: 'admins/sessions#new'
+    # root :to => 'admins#show'
+  end
   authenticate :admin do
     resources :countries, only: [:new, :create, :edit, :update, :destroy]
     resources :airports, only: [:new, :create, :edit, :update, :destroy]
