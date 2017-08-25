@@ -1,0 +1,20 @@
+#flight-listings {
+  list-style-type: none;
+  h4 {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 3rem;
+  }
+  h3 {
+    background-color: #33ffcc;
+    padding: 2rem;
+  }
+  .flight {
+    display: inline-block;
+    width: 46%;
+    margin: 2rem;
+    background-color: white;
+    border-style: solid;
+    border-color: #33ffcc;
+
+  }
+}

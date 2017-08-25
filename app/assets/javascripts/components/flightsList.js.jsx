@@ -7,7 +7,7 @@ class FlightsList extends React.Component {
         <Flight airport={ this.props.airport } country={ this.props.country } flight={ flight } parent={ this }/>
       </li>)
     return(
-      <div>{ listItems }</div>
+      <ul id="flight-listings">{ listItems }</ul>
       )
   } else {
     return(

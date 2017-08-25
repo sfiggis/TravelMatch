@@ -48,14 +48,14 @@ class AirportsList extends React.Component {
     console.log(this.state.flightsList)
     if(this.props.airports !== undefined && this.props.airports !== null) {
       const listItems = this.props.airports.map((airport) =>
-        <div id="airport-wrap"><li className="airport" key={ airport.id }>
+        <li className="airport" key={ airport.id }>
         <Airport search={ this.props.search } airport={ airport } country={ this.props.country }/>
-      </li></div>)
+      </li>)
       return (
         <div id="airport-wrapper">
         <button onClick={ this.handleClick } id="top-flights-button">Top Flights</button>
         <div>{ this.state.flightsList }</div>
-        <div>{listItems}</div>
+        <div id="airport-wrap">{listItems}</div>
         </div>
       )
     } else {
