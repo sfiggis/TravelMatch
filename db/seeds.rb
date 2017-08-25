@@ -26,4 +26,8 @@ end
    @country.airports << Airport.where(iso2: @country.iso2)
  end
 
+ traveller1 = Traveller.find_or_create_by(first_name: "Sophie", last_name: "Figgis", username: "sfiggis", email: "sophie@example.com", password: "password", password_confirmation: "password")
+ traveller2 = Traveller.find_or_create_by(first_name: "Joe", last_name: "Bloggs", username: "joeybee", email: "joe@example.com", password: "password", password_confirmation: "password")
+ admin = Admin.find_or_create_by(email: "admin@example.com", password: "password", password_confirmation: "password", username: "username")
+
 
