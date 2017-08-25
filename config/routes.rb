@@ -25,7 +25,6 @@ Rails.application.routes.draw do
     end
     # get 'sign_in', to: 'admins/sessions#new'
     # # root :to => 'admins#show'
-  end
   authenticate :admin do
     resources :countries, only: [:new, :create, :edit, :update, :destroy]
     resources :airports, only: [:new, :create, :edit, :update, :destroy]
