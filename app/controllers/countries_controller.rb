@@ -1,3 +1,4 @@
+require 'pry'
 class CountriesController < ApplicationController
   layout 'countries/main', only: [:show]
   def edit
@@ -6,6 +7,7 @@ class CountriesController < ApplicationController
   end
 
   def update
+    binding.pry
     @country = Country.find(params[:id])
     @country.update(country_params)
     if @country.save
