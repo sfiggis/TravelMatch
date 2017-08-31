@@ -7,9 +7,6 @@ class Airport extends React.Component {
       rendered: false,
       currentAirport: []
     }
-    // this.handleClick = this.handleClick.bind(this);
-    // this.request = this.request.bind(this);
-    // this.showFlights = this.showFlights.bind(this);
     this.dataSource = this.dataSource.bind(this);
   }
 
@@ -18,29 +15,6 @@ class Airport extends React.Component {
       view: <FlightsList airport={ this.props.airport } flights={ this.state.flights }/>
     })
   }
-
-  // request() {
-  //   var search;
-  //   if(this.props.search) {
-  //     search = this.props.search.id
-  //   }
-  //   let data = JSON.stringify({
-  //     search_id: search,
-  //     airport_id: this.props.airport.id });
-  //   var view = this
-  //   $.ajax({
-  //     url: "/airports/" + this.props.airport.id + "get_flights",
-  //     type: 'PUT',
-  //     contentType: 'application/json',
-  //     data: data,
-  //     success: function(data, status, xhr) {
-  //       view.setState({
-  //         flights: this.data["search"]
-  //       });
-  //       view.showFlights
-  //     }
-  //   })
-  // }
 
   componentWillUpdate() {
     if(this.state.rendered === false) {
@@ -62,11 +36,6 @@ class Airport extends React.Component {
     }.bind(this));
   };
 
-  // handleClick() {
-  //   this.setState({
-  //     view: <ShowAirport /
-  //   })
-  // }
   render() {
     if(this.state.currentAirport.images != undefined) {
       return(

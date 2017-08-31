@@ -45,7 +45,6 @@ class AirportsList extends React.Component {
     this.flightList();
   };
   render() {
-    console.log(this.state.flightsList)
     if(this.props.airports !== undefined && this.props.airports !== null) {
       const listItems = this.props.airports.map((airport) =>
         <li className="airport" key={ airport.id }>
