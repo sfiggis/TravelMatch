@@ -26,6 +26,14 @@ class Search < ApplicationRecord
     @token
   end
 
+  def self.exchange_rate_token=(token)
+    @exchange_rate_token = token
+  end
+
+  def self.exchange_rate_token
+    @exchange_rate_token
+  end
+
   def destination_results
     unless budget.nil?
       countries = Country.all.select{ |country| country.in_budget?(self) }

@@ -11,14 +11,6 @@ class Airport < ApplicationRecord
     @routes
   end
 
-  def self.token=(token)
-    @token = token
-  end
-
-  def self.token
-    @token
-  end
-
   def get_flights(search, current_traveller)
     if search.traveller.currency_code   
       @currency = search.traveller.currency_code
@@ -38,7 +30,7 @@ class Airport < ApplicationRecord
     results = self.class.get('http://api.travelpayouts.com/v1/prices/monthly', query: {
       origin: @origin,
       destination: self.iso2,
-      token: Airport.token,
+      token: Search.token,
       format: :json,
       currency: @currency
     })

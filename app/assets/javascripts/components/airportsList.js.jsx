@@ -25,7 +25,6 @@ class AirportsList extends React.Component {
         contentType: 'application/json',
         data: data,
         success: function(data, status, xhr) {
-          console.log(data["flight_results"]);
           view.setState({
             flights: data["flight_results"]
           });
@@ -52,10 +51,10 @@ class AirportsList extends React.Component {
         <Airport search={ this.props.search } airport={ airport } country={ this.props.country }/>
       </li></div>)
       return (
-        <div>
+        <div id="airport-wrapper">
         <button onClick={ this.handleClick } id="top-flights-button">Top Flights</button>
         <div>{ this.state.flightsList }</div>
-        <div>{listItems}</div>
+        <div id="airport-wrap">{listItems}</div>
         </div>
       )
     } else {

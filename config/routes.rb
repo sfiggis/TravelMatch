@@ -10,9 +10,24 @@ Rails.application.routes.draw do
 
   resources :admins, only: [:index, :show]
 
-  devise_scope :admin do
-    get 'sign_in', to: 'admins/sessions#new'
-    # root :to => 'admins#show'
+  # devise_scope :admin do
+    # authenticated  do
+    #   root to: 'admins#index'
+    # end
+
+  #   unauthenticated do
+  #     root to: 'admins/sessions#new'
+  #   end
+  # end
+
+  devise_scope :traveller do
+    authenticated  do
+      root to: 'home#index'
+    end
+
+    unauthenticated do
+      root to: 'travellers/sessions#new'
+    end
   end
   authenticate :admin do
     resources :countries, only: [:new, :create, :edit, :update, :destroy]
@@ -21,9 +36,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :travellers
   resources :searches
-  devise_scope :traveller do
-    root to: "home#index"
-  end
   resources :countries, :only => [:edit, :create, :show, :update]
   resources :searches do
     member do

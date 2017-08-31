@@ -1,8 +1,9 @@
+
 #devise {
   font-family: 'Quicksand', sans-serif;
   h1, h2 {
     font-weight: bold;
-    font-size: 5rem;
+    font-size: 3rem;
   }
   text-align: center;
   .links {
@@ -12,12 +13,11 @@
   form {
     text-align: center;
     margin: 1.5rem;
-    padding: 1.5rem;
     font-size: 1.5rem;
     .field {
-      padding: 1.5rem;
+      padding: 0.5rem;
       input {
-        padding: 1.5rem;
+        padding: 0.5rem;
       } 
       #traveller_email, #traveller_password {
           width: 20rem;
@@ -30,7 +30,7 @@
       color: white;
       height: 4rem;
       width: 10rem;
-      font-size: 2rem;
+      font-size: 1.5rem;
       border: none;
       margin: 1rem;
     }
@@ -38,8 +38,8 @@
   #devise-form {
     padding-bottom: 2rem;
     padding-top: 2rem;
-    margin-left: 50rem;
-    margin-right: 50rem;
+    height: 80%;
+    width: 40%;
     background-color: rgba(255, 255, 255, 0.5);
   }
 }

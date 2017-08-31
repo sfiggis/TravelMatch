@@ -1,13 +1,12 @@
 class FlightsList extends React.Component {
   render() {
-  if(this.props.flights !== undefined && this.props.flights !== null) {
+  if(this.props.flights !== undefined && this.props.flights !== []) {
     const listItems = this.props.flights.map((flight) =>
       <li className="flight" key={ flight[0] }>
         <Flight airport={ this.props.airport } country={ this.props.country } flight={ flight } parent={ this }/>
       </li>)
-    { console.log(listItems)}
     return(
-      <div>{ listItems }</div>
+      <ul id="flight-listings">{ listItems }</ul>
       )
   } else {
     return(

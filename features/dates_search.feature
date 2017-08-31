@@ -10,4 +10,5 @@ Feature: Dates Search
       And they fill in the return date
       And they click the search button
       # need to stub out ajax
-    # Then they are taken to the search page
+    Then they are taken to the search results page
+      And they see a list of flights for those dates

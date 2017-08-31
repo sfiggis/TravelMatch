@@ -3,6 +3,17 @@ h1, h2 {
   font-family: 'Quicksand', sans-serif;
 }
 .airport {
+  background-color: rgba(255, 255, 255, 0.5);
+  background-color: white;
+  display: inline-block;
+  width: 46%;
+  border-width: 0.5rem;
+  border-style: solid;
+  border-color: #33ffcc;
+  list-style: none;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin: 2rem;
   .airport-wrapper {
   background-color: rgba(255, 255, 255, 0.5);
   // position: absolute;
@@ -14,25 +25,29 @@ h1, h2 {
 
 #airport-wrap {
   vertical-align: top;
-  display: inline-block;
+  // display: inline-block;
   background-color: rgba(255, 255, 255, 0.5);
-  width: 50%;
-  li {
-    background-color: white;
-      border-width: 0.5rem;
-      border-style: solid;
-      border-color: #33ffcc;
-      padding: 2rem;
-      margin: 2rem;
-      list-style: none;
-  }
+  margin: 4rem;
 }
 
 #airport-content {
   margin-top: 3rem;
+  h2, h3 {
+    font-family: 'Quicksand', sans-serif;
+    margin-left: 2rem;
+  }
 }
 
 #top-flights-button {
   margin-bottom: 3rem;
   width: 14rem;
+}
+
+.btn-default {
+  float: right !important;
+  margin: 1.5rem !important;
+  color: white !important;
+  background-color: #33ffcc !important;
+  font-family: 'Quicksand', sans-serif !important;
+  font-size: 1.5rem !important;
 }

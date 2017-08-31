@@ -8,13 +8,13 @@ class Country < ApplicationRecord
 
   include HTTParty
 
-  def self.token=(token)
-    @token = token
-  end
+  # def self.token=(token)
+  #   @token = token
+  # end
 
-  def self.token
-    @token
-  end
+  # def self.token
+  #   @token
+  # end
 
   def self.current_traveller=(traveller)
     @current_traveller = traveller
@@ -38,10 +38,9 @@ class Country < ApplicationRecord
 
   def cost_converter
     results = self.class.get('https://openexchangerates.org/api/latest.json', query: {
-      app_id: Country.token,
+      app_id: Search.exchange_rate_token,
     })
     body = JSON.parse(results.body)
-    binding.pry
     home_country = Country.find(Country.current_traveller.home_location_id)
     # not sure this is right = exhange not touchiing current country choice?
     exchange = body["rates"]["#{home_country.currency_code}"]

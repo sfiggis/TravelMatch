@@ -5,8 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
-gem 'font-awesome-sass', '~> 4.7.0'
 gem "roda"
 gem "figaro"
 gem "image_processing"
@@ -45,7 +43,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'rails_12factor', group: :production
 group :development, :test do
   gem "factory_girl_rails", "~> 4.0", :require => false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

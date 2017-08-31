@@ -33,11 +33,9 @@ class Search extends React.Component {
       contentType: 'application/json',
       data: data,
       success: function(data, status, xhr) {
-        console.log(this.data);
         view.setState({
           currentSearch: this.data["search"]
           });
-        console.log(view);
         view.show();
     }
   })
