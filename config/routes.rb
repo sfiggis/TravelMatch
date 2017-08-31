@@ -28,8 +28,6 @@ Rails.application.routes.draw do
     unauthenticated do
       root to: 'travellers/sessions#new'
     end
-    # get 'sign_in', to: 'admins/sessions#new'
-    # # root :to => 'admins#show'
   end
   authenticate :admin do
     resources :countries, only: [:new, :create, :edit, :update, :destroy]
@@ -38,9 +36,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :travellers
   resources :searches
-  devise_scope :traveller do
-    root to: "home#index"
-  end
   resources :countries, :only => [:edit, :create, :show, :update]
   resources :searches do
     member do
