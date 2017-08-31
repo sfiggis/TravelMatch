@@ -18,13 +18,21 @@ class Search < ApplicationRecord
     end
   end
 
-  # def self.token=(token)
-  #   @token = token
-  # end
+  def self.token=(token)
+    @token = token
+  end
 
-  # def self.token
-  #   @token
-  # end
+  def self.token
+    @token
+  end
+
+  def self.exchange_rate_token=(token)
+    @exchange_rate_token = token
+  end
+
+  def self.exchange_rate_token
+    @exchange_rate_token
+  end
 
   def destination_results
     unless budget.nil?
@@ -38,7 +46,7 @@ class Search < ApplicationRecord
         origin: self.origin,
         departure_date: self.departure_date,
         return_date: self.return_date,
-        token: "de802dc5fcdd7bdd866adf7001fc06df",
+        token: Search.token,
         format: :json,
         currency: self.traveller.currency
         })

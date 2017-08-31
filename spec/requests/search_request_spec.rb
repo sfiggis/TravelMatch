@@ -6,7 +6,7 @@ RSpec.describe "SearchRequest", :type => :request do
     let!(:country) { create(:country) }
       before do
       @search = traveller.searches.create!
-      Country.token = "12345"
+      Search.exchange_rate_token = "12345"
         stub_request(:get, "https://openexchangerates.org/api/latest.json?app_id=12345").
         with(headers: {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
         to_return(status: 200, body: File.read("spec/exchange_rates.json"), headers: {})

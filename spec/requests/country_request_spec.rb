@@ -9,7 +9,7 @@ RSpec.describe "SearchRequest", :type => :request do
       @usa = Country.find_or_create_by(name: "US", iso2: "US", iso3: "USA", itu: "USA", fips: "US", currency_code: "USD", currency_name: "US Dollar", capital: "Washington", continent: "NA", gdp_ppp: 57411.7873)
       @bermuda = Country.find_or_create_by(name: "Bermuda", iso2: "BM", iso3: "BMU", itu: "BER", fips: "BD", currency_code: "BMD", currency_name: "Bermudian Dollar", capital: "Hamilton", continent: "NA", gdp_ppp: 52436.0564)
       post '/countries', :params => {:country => {name: "Bermuda", iso2: "BM", iso3: "BMU", itu: "BER", fips: "BD", currency_code: "BMD", currency_name: "Bermudian Dollar", capital: "Hamilton", continent: "NA", gdp_ppp: 52436.0564}, session: {:current_traveller => traveller.id} }
-      Country.token = "12345"
+      Search.exhange_rate_token = "12345"
 
       stub_request(:get, "https://openexchangerates.org/api/latest.json?app_id=12345").
          with(headers: {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
