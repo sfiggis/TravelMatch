@@ -39,7 +39,7 @@ class Airport extends React.Component {
   render() {
     if(this.state.currentAirport.images != undefined) {
       return(
-        <div id="airport-content">
+        <div className="airport-content">
           <img src={ this.state.currentAirport.images[0] }/>
           <h2>{ this.props.airport.municipality }</h2>
           <h3>{ this.props.airport.name }</h3>
@@ -47,7 +47,7 @@ class Airport extends React.Component {
         </div>)
     } else {
       return (
-      <div id="airport-content">>
+      <div className="airport-content">
         <h2>{ this.props.airport.municipality }</h2>
         <h3>{ this.props.airport.name }</h3>
         <a href={"/airports/" +  this.props.airport.id } id="learn_more" className="btn btn-default">Discover!</a>
