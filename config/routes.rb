@@ -28,8 +28,8 @@ Rails.application.routes.draw do
     unauthenticated do
       root to: 'travellers/sessions#new'
     end
-    get 'sign_in', to: 'admins/sessions#new'
-    # root :to => 'admins#show'
+    # get 'sign_in', to: 'admins/sessions#new'
+    # # root :to => 'admins#show'
   end
   authenticate :admin do
     resources :countries, only: [:new, :create, :edit, :update, :destroy]
