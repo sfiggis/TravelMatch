@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   devise_scope :admin do
     authenticated  do
-      root to: 'home#index'
+      root to: 'admins#index'
     end
 
     unauthenticated do
