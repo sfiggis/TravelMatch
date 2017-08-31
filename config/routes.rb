@@ -10,15 +10,15 @@ Rails.application.routes.draw do
 
   resources :admins, only: [:index, :show]
 
-  devise_scope :admin do
-    authenticated  do
-      root to: 'admins#index'
-    end
+  # devise_scope :admin do
+    # authenticated  do
+    #   root to: 'admins#index'
+    # end
 
-    unauthenticated do
-      root to: 'admins/sessions#new'
-    end
-  end
+  #   unauthenticated do
+  #     root to: 'admins/sessions#new'
+  #   end
+  # end
 
   devise_scope :traveller do
     authenticated  do
